@@ -34,9 +34,11 @@ jobs:
         working-directory: .
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y --no-install-recommends libgl-dev
+          sudo apt-get install -y --no-install-recommends libgl-dev libomp-dev
           ./build.sh household --cpu
-          ./household --headless --eval_episodes=1
+          output=$(timeout 30 ./household --headless --eval_episodes=2)
+          echo "$output"
+          grep -q 'n=2 ' <<< "$output"
       - name: Verify development Beads DAG
         run: python scripts/inspect_backlog.py
       - name: Run deterministic scenario
