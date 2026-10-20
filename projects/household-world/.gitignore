@@ -11,5 +11,7 @@ dist/
 *.o
 artifacts/server.log
 artifacts/server.pid
+artifacts/preview.html
+artifacts/sample-trajectory.json
 .DS_Store
 vendor/PufferLib-5.0/
