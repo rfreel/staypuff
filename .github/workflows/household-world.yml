@@ -30,6 +30,11 @@ jobs:
         run: python -m pytest -q
       - name: Compile native kernels
         run: bash scripts/build_native.sh
+      - name: Compile and evaluate full Staypuff Ocean integration
+        working-directory: .
+        run: |
+          ./build.sh household --cpu
+          ./household --headless --eval_episodes=1
       - name: Verify development Beads DAG
         run: python scripts/inspect_backlog.py
       - name: Run deterministic scenario
