@@ -1,0 +1,15 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+.venv/
+.vscode/
+.env
+build/
+dist/
+*.so
+*.o
+artifacts/server.log
+artifacts/server.pid
+.DS_Store
+vendor/PufferLib-5.0/

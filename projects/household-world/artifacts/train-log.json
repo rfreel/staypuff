@@ -1,0 +1,64 @@
+{
+  "checkpoint": "artifacts/household_ppo.pt",
+  "steps": 5040,
+  "episodes": 420,
+  "history": [
+    {
+      "update": 1,
+      "mean_reward": 1.5834,
+      "policy_loss_combined": 19.0855
+    },
+    {
+      "update": 8,
+      "mean_reward": 1.5254,
+      "policy_loss_combined": 15.0959
+    },
+    {
+      "update": 15,
+      "mean_reward": 1.5852,
+      "policy_loss_combined": 14.0361
+    },
+    {
+      "update": 22,
+      "mean_reward": 1.6763,
+      "policy_loss_combined": 12.5773
+    },
+    {
+      "update": 29,
+      "mean_reward": 1.6591,
+      "policy_loss_combined": 9.0299
+    },
+    {
+      "update": 36,
+      "mean_reward": 1.713,
+      "policy_loss_combined": 8.1443
+    },
+    {
+      "update": 43,
+      "mean_reward": 1.714,
+      "policy_loss_combined": 7.1669
+    },
+    {
+      "update": 50,
+      "mean_reward": 1.7338,
+      "policy_loss_combined": 6.4164
+    },
+    {
+      "update": 57,
+      "mean_reward": 1.7472,
+      "policy_loss_combined": 6.3918
+    },
+    {
+      "update": 64,
+      "mean_reward": 1.8026,
+      "policy_loss_combined": 6.3137
+    },
+    {
+      "update": 70,
+      "mean_reward": 1.7036,
+      "policy_loss_combined": 6.0976
+    }
+  ],
+  "algorithm": "CPU PPO",
+  "trained_on": "authoritative Python HouseholdWorld synthetic market"
+}

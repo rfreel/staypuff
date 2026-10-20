@@ -1,0 +1,26 @@
+name: Verify household simulator
+on:
+  push:
+  pull_request:
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install CPU research dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[web,test]' httpx numpy
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Test Python modules
+        run: python -m pytest -q
+      - name: Compile native thermal kernel and Ocean stub
+        run: bash scripts/build_native.sh
+      - name: Validate development Beads DAG
+        run: python scripts/inspect_backlog.py
+      - name: Run the deterministic simulation
+        run: python -m household.cli simulate --seed 17 --days 14 --action LOW_WASTE

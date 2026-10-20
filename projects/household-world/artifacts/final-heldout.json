@@ -1,0 +1,111 @@
+{
+  "provenance": "synthetic held-out scenarios",
+  "seed_count": 12,
+  "heldout_seeds": [
+    20001,
+    20002,
+    20003,
+    20004,
+    20005,
+    20006,
+    20007,
+    20008,
+    20009,
+    20010,
+    20011,
+    20012
+  ],
+  "days": 30,
+  "results": {
+    "BALANCED": {
+      "mean_score": 83.027,
+      "std_score": 0.497,
+      "served_rate": 1.0,
+      "mean_spend_usd": 430.56,
+      "mean_waste_kg": 20.15,
+      "mean_acceptance_rate": 0.594,
+      "mean_variety": 7.33
+    },
+    "CHEAPEST": {
+      "mean_score": 84.305,
+      "std_score": 0.409,
+      "served_rate": 1.0,
+      "mean_spend_usd": 376.26,
+      "mean_waste_kg": 20.37,
+      "mean_acceptance_rate": 0.565,
+      "mean_variety": 5.08
+    },
+    "PROMOTIONS": {
+      "mean_score": 83.436,
+      "std_score": 1.127,
+      "served_rate": 1.0,
+      "mean_spend_usd": 436.59,
+      "mean_waste_kg": 19.44,
+      "mean_acceptance_rate": 0.601,
+      "mean_variety": 7.92
+    },
+    "LOW_WASTE": {
+      "mean_score": 86.873,
+      "std_score": 0.242,
+      "served_rate": 1.0,
+      "mean_spend_usd": 438.03,
+      "mean_waste_kg": 17.1,
+      "mean_acceptance_rate": 0.623,
+      "mean_variety": 7
+    },
+    "NUTRIENT_FIRST": {
+      "mean_score": 81.94,
+      "std_score": 0.588,
+      "served_rate": 1.0,
+      "mean_spend_usd": 445.88,
+      "mean_waste_kg": 20.64,
+      "mean_acceptance_rate": 0.601,
+      "mean_variety": 7.25
+    },
+    "PANTRY_ONLY": {
+      "mean_score": 0,
+      "std_score": 0.0,
+      "served_rate": 0.0,
+      "mean_spend_usd": 0.0,
+      "mean_waste_kg": 1.35,
+      "mean_acceptance_rate": 0.0,
+      "mean_variety": 0
+    },
+    "BATCH_PREP": {
+      "mean_score": 70.197,
+      "std_score": 2.166,
+      "served_rate": 0.844,
+      "mean_spend_usd": 581.25,
+      "mean_waste_kg": 54.42,
+      "mean_acceptance_rate": 0.568,
+      "mean_variety": 6
+    },
+    "NEARBY_ONLY": {
+      "mean_score": 82.857,
+      "std_score": 0.896,
+      "served_rate": 1.0,
+      "mean_spend_usd": 435.59,
+      "mean_waste_kg": 20.21,
+      "mean_acceptance_rate": 0.589,
+      "mean_variety": 7.5
+    },
+    "PPO_CHECKPOINT": {
+      "mean_score": 86.873,
+      "std_score": 0.242,
+      "served_rate": 1.0,
+      "mean_spend_usd": 438.03,
+      "mean_waste_kg": 17.1,
+      "mean_acceptance_rate": 0.623,
+      "mean_variety": 7,
+      "comparison": {
+        "baseline": "LOW_WASTE",
+        "mean_score_delta": 0.0,
+        "bootstrap_95pct_interval": [
+          0.0,
+          0.0
+        ],
+        "improvement_demonstrated": false
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "household-world"
+version = "0.2.0"
+description = "Coupled household economics, food, kitchen, Beads DAG and RL research simulator"
+requires-python = ">=3.10"
+dependencies = []
+[project.optional-dependencies]
+web = ["fastapi>=0.110", "uvicorn>=0.29"]
+rl = ["numpy>=1.26", "torch>=2.1"]
+test = ["pytest>=8"]
+[project.scripts]
+household-world = "household.cli:main"
+[tool.setuptools.packages.find]
+include = ["household*"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]

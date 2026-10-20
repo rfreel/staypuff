@@ -1,0 +1,80 @@
+model: HWM-Omega
+version: '0.1'
+status: proposed_specification
+principles:
+  - typed_entities_and_relations
+  - provenance_and_valid_time
+  - separate_observation_from_latent_state
+  - conservation_and_feasibility
+  - dynamic_beads_dag
+  - event_sourced_simulation
+  - adaptive_fidelity
+entities:
+  household: [members, residences, budgets, preferences, calendars, assets]
+  person: [age, growth_stage, activity, appetite, preferences, allergies, dietary_constraints, availability, skills, fatigue, consumption_history]
+  product: [gtin, brand, package, net_mass, edible_yield, nutrition_label, ingredients, allergens, lot]
+  offer: [merchant, location, sku, currency, list_price, unit_price, loyalty_price, promotion, tax, deposit, quantity_limit, valid_interval, confidence]
+  transaction: [basket, coupons, substitutions, payment, receipt, refund, fees, travel_cost]
+  inventory_lot: [product, quantity, storage_location, acquired_at, use_by, temperature_history, quality_distribution, provenance]
+  recipe: [ingredient_requirements, alternatives, transformations, equipment, operations, servings, nutrition_model]
+  meal: [recipe, portions_by_person, preparation_state, consumption, leftovers, satisfaction]
+  equipment: [capacity, geometry, thermal_properties, power, availability, maintenance]
+  resource: [capacity, calendar, owner, location, allocation]
+  bead: [id, type, goal, preconditions, effects, predecessors, resource_demands, duration_model, status, verifier, fallback]
+  event: [timestamp, actor, action, observed_state, resulting_state, exogenous_randomness, source]
+  belief: [variable, distribution, observation_model, last_updated, evidence]
+  budget: [period, currency, envelope, committed, spent, reserved, remaining]
+  forecast: [target, horizon, scenario, distribution, model_version, calibration]
+  constraint: [scope, predicate, hardness, evidence, exception_policy]
+relations:
+  - owns
+  - located_at
+  - contains
+  - consumes
+  - substitutes_for
+  - depends_on
+  - requires_resource
+  - transforms_into
+  - offered_by
+  - priced_at
+  - allocated_to
+  - constrained_by
+  - observed_by
+  - derived_from
+bead_types:
+  - goal
+  - information
+  - decision
+  - procurement
+  - transport
+  - storage
+  - preparation
+  - physical_control
+  - scheduling
+  - allocation
+  - verification
+  - contingency
+  - recovery
+  - evaluation
+  - disposal
+  - cleaning
+  - maintenance
+  - learning
+  - settlement
+markets:
+  pricing_factors: [base_price, unit_conversion, package_yield, promotion_stack, coupon, loyalty, tax, deposit, fees, tips, travel, opportunity_cost, returns]
+  dynamics: [stockout, replenishment, seasonality, inflation, competition, demand, clearance, price_error]
+nutrition:
+  tracking: [energy, macronutrients, fiber, sodium, vitamins, minerals, allergens, portion, age_appropriateness, food_safety]
+  rule: 'individual targets must be externally validated; child needs are not scaled adult needs'
+physics:
+  processes: [heat_conduction, convection, radiation, evaporation, moisture_diffusion, phase_change, browning_kinetics, cooling, storage_deterioration]
+  limitation: 'reduced-order models require calibration; simulation is not food-safety certification'
+rl:
+  formulation: constrained_partially_observable_semi_markov_decision_process
+  policies: [household_planner, procurement, meal_composition, inventory, scheduler, thermal_control, recovery]
+  actions: [inspect, purchase, substitute, store, freeze, prepare, schedule, allocate, control, verify, replan, wait]
+  hard_constraints: [allergen_exclusion, pediatric_safety, resource_feasibility, inventory_conservation, financial_limits]
+  evaluation: [cost, waste, nutrition_adequacy, constraint_violations, meal_acceptance, labor, energy, lateness, regret, transfer]
+  baselines: [random, reorder_point, earliest_deadline_first, mixed_integer_programming, model_predictive_control]
+  validation: [unit_tests, property_tests, differential_tests, replay, held_out_scenarios, counterfactual_branches, calibration]
