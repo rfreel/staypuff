@@ -1,0 +1,46 @@
+name: S-expression repo and Kombat environments
+on:
+  push:
+    paths:
+      - 'ocean/sexpr_repo/**'
+      - 'ocean/frontier_kombat/**'
+      - 'config/sexpr_repo.ini'
+      - 'config/frontier_kombat.ini'
+      - 'projects/sexpr-repo-rl/**'
+      - 'projects/frontier-kombat/**'
+      - 'projects/validation/**'
+      - '.github/workflows/sexpr-repo-frontier-kombat.yml'
+  pull_request:
+    paths:
+      - 'ocean/sexpr_repo/**'
+      - 'ocean/frontier_kombat/**'
+      - 'projects/sexpr-repo-rl/**'
+      - 'projects/frontier-kombat/**'
+      - 'projects/validation/**'
+      - '.github/workflows/sexpr-repo-frontier-kombat.yml'
+  workflow_dispatch:
+
+jobs:
+  native-and-python:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install numpy pytest
+      - name: Verify S-expression rewrite and repository transitions
+        run: bash projects/sexpr-repo-rl/scripts/check.sh
+      - name: Verify Ocean adapter API against lightweight stubs
+        run: bash projects/validation/check.sh
+      - name: Verify 20 fighter scenarios and contiguous shared memory ABI
+        env:
+          OMP_NUM_THREADS: '4'
+        run: python -m pytest -q projects/frontier-kombat/tests
+      - name: REPL smoke test
+        run: |
+          printf 'show\nrepair_import\nquit\n' | bash projects/sexpr-repo-rl/scripts/repl.sh 42 | grep 'repo: imports'
+      - name: Compile Python modules
+        run: python -m compileall -q projects/frontier-kombat

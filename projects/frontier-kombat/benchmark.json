@@ -1,0 +1,220 @@
+{
+  "suite": "Frontier Kombat 20 synthetic OOD tests",
+  "num_environments": 20,
+  "observation_dim": 24,
+  "actions": 72,
+  "throughput": {
+    "steps": 819200,
+    "seconds": 0.027477849999968385,
+    "frames_per_second": 29813104.009263553,
+    "invariants": true
+  },
+  "evaluation": {
+    "total_envs": 160,
+    "steps": 250,
+    "all_invariants": true,
+    "return_definition": "sum of step rewards over rollout for each slot, averaged by environment"
+  },
+  "environments": [
+    {
+      "code": "E01",
+      "name": "HadoukenDopplerShift",
+      "domain": "Nonstationary physics",
+      "id_arcade_return": 3.295,
+      "ood_arcade_return": 0.73,
+      "ood_reactive_return": 4.49,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E02",
+      "name": "ShoryukenInverseIFrame",
+      "domain": "Nonstationary physics",
+      "id_arcade_return": 3.395,
+      "ood_arcade_return": -0.827,
+      "ood_reactive_return": 0.557,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E03",
+      "name": "SonicBoomChargeCapacitor",
+      "domain": "Nonstationary physics",
+      "id_arcade_return": 3.212,
+      "ood_arcade_return": -0.564,
+      "ood_reactive_return": 5.862,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 2
+    },
+    {
+      "code": "E04",
+      "name": "KarateCancelPolytope",
+      "domain": "Nonstationary physics",
+      "id_arcade_return": 3.595,
+      "ood_arcade_return": 0.181,
+      "ood_reactive_return": 1.26,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E05",
+      "name": "ZangiefSPDNonEuclideanReach",
+      "domain": "Nonstationary physics",
+      "id_arcade_return": 3.275,
+      "ood_arcade_return": -1.063,
+      "ood_reactive_return": 2.704,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E06",
+      "name": "KombatDialDyckGrammar",
+      "domain": "Input grammar",
+      "id_arcade_return": 3.882,
+      "ood_arcade_return": 1.668,
+      "ood_reactive_return": 4.305,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E07",
+      "name": "ScorpionTetherNonMarkov",
+      "domain": "Input grammar",
+      "id_arcade_return": 3.437,
+      "ood_arcade_return": -1.082,
+      "ood_reactive_return": 0.242,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E08",
+      "name": "SubZeroFreezeEntropyFloor",
+      "domain": "Input grammar",
+      "id_arcade_return": 2.838,
+      "ood_arcade_return": 1.062,
+      "ood_reactive_return": 5.24,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 2
+    },
+    {
+      "code": "E09",
+      "name": "ShangTsungMorphLatentMirror",
+      "domain": "Input grammar",
+      "id_arcade_return": 3.628,
+      "ood_arcade_return": 0.241,
+      "ood_reactive_return": 1.9,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E10",
+      "name": "FatalitySweepDistanceCompiler",
+      "domain": "Input grammar",
+      "id_arcade_return": 3.292,
+      "ood_arcade_return": -1.517,
+      "ood_reactive_return": 1.708,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E11",
+      "name": "GGPORollbackDesyncMirage",
+      "domain": "Partial observation",
+      "id_arcade_return": 2.343,
+      "ood_arcade_return": -0.56,
+      "ood_reactive_return": 3.602,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E12",
+      "name": "DhalsimPhantomLimbHurtbox",
+      "domain": "Partial observation",
+      "id_arcade_return": 3.782,
+      "ood_arcade_return": -0.048,
+      "ood_reactive_return": 0.515,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E13",
+      "name": "BisonPsychoReflectorParity",
+      "domain": "Partial observation",
+      "id_arcade_return": 3.937,
+      "ood_arcade_return": 1.191,
+      "ood_reactive_return": 5.871,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E14",
+      "name": "VegaWallClimbHomotopy",
+      "domain": "Partial observation",
+      "id_arcade_return": 3.067,
+      "ood_arcade_return": 0.354,
+      "ood_reactive_return": 1.906,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E15",
+      "name": "RaidenTeleportPhaseAliasing",
+      "domain": "Partial observation",
+      "id_arcade_return": 3.183,
+      "ood_arcade_return": -1.436,
+      "ood_reactive_return": 2.401,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E16",
+      "name": "SuperComboThermodynamicGauge",
+      "domain": "Resource game",
+      "id_arcade_return": 3.533,
+      "ood_arcade_return": 0.317,
+      "ood_reactive_return": 4.244,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E17",
+      "name": "OkizemeMinimaxWakeupGame",
+      "domain": "Resource game",
+      "id_arcade_return": 2.813,
+      "ood_arcade_return": -1.336,
+      "ood_reactive_return": 0.744,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E18",
+      "name": "ChipDamageZenoParadox",
+      "domain": "Resource game",
+      "id_arcade_return": 3.062,
+      "ood_arcade_return": -0.552,
+      "ood_reactive_return": 4.828,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 1
+    },
+    {
+      "code": "E19",
+      "name": "RedParryFrameTrapChaos",
+      "domain": "Resource game",
+      "id_arcade_return": 3.259,
+      "ood_arcade_return": 1.194,
+      "ood_reactive_return": 1.35,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    },
+    {
+      "code": "E20",
+      "name": "ShaoKahnBossTauntMetaCritic",
+      "domain": "Resource game",
+      "id_arcade_return": 2.522,
+      "ood_arcade_return": -1.845,
+      "ood_reactive_return": 1.477,
+      "ood_arcade_wins": 0,
+      "ood_reactive_wins": 0
+    }
+  ]
+}
