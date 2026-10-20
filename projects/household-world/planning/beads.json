@@ -1,0 +1,1517 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Development work DAG, separate from runtime household Beads",
+  "as_of": "2026-10-20",
+  "nodes": [
+    {
+      "id": "foundation.root",
+      "kind": "epic",
+      "title": "Foundation subsystem",
+      "status": "partial",
+      "depends_on": [],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "foundation.domain-types",
+      "kind": "engineering",
+      "title": "Domain Types",
+      "status": "complete",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Typed Person, Product, Offer, Lot, Recipe, Operation, Ledger entities",
+      "evidence": []
+    },
+    {
+      "id": "foundation.event-log",
+      "kind": "engineering",
+      "title": "Event Log",
+      "status": "complete",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Simulation emits typed events and retains bounded history",
+      "evidence": []
+    },
+    {
+      "id": "foundation.transaction-boundary",
+      "kind": "engineering",
+      "title": "Transaction Boundary",
+      "status": "complete",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Single authoritative world.step and atomic cash charge",
+      "evidence": []
+    },
+    {
+      "id": "foundation.seeded-simulation",
+      "kind": "engineering",
+      "title": "Seeded Simulation",
+      "status": "complete",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Identical seed/policy reproduces episode",
+      "evidence": []
+    },
+    {
+      "id": "foundation.counterfactual-fork",
+      "kind": "engineering",
+      "title": "Counterfactual Fork",
+      "status": "complete",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Fork deep copies world and RNG without changing original",
+      "evidence": []
+    },
+    {
+      "id": "foundation.provenance-schemas",
+      "kind": "engineering",
+      "title": "Provenance Schemas",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "All data, event, prices and model outputs carry evidence identifiers and valid-time semantics",
+      "evidence": []
+    },
+    {
+      "id": "foundation.unit-registry",
+      "kind": "engineering",
+      "title": "Unit Registry",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Mass grams, money cents and energy kcal fixed; validated unit-conversion registry",
+      "evidence": []
+    },
+    {
+      "id": "foundation.belief-state",
+      "kind": "engineering",
+      "title": "Belief State",
+      "status": "planned",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Observable uncertainty distribution and calibration retained independently of latent state",
+      "evidence": []
+    },
+    {
+      "id": "foundation.episode-snapshot-schema",
+      "kind": "engineering",
+      "title": "Episode Snapshot Schema",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Replay snapshot with independent schema/compatibility validation",
+      "evidence": []
+    },
+    {
+      "id": "foundation.full-event-sourcing",
+      "kind": "engineering",
+      "title": "Full Event Sourcing",
+      "status": "planned",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Reconstitute complete state from append-only ordered event stream",
+      "evidence": []
+    },
+    {
+      "id": "markets.root",
+      "kind": "epic",
+      "title": "Markets subsystem",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "markets.product-catalog",
+      "kind": "engineering",
+      "title": "Product Catalog",
+      "status": "complete",
+      "depends_on": [
+        "markets.root",
+        "foundation.root"
+      ],
+      "acceptance": "16 example products with fixed synthetic nutrition and storage properties",
+      "evidence": []
+    },
+    {
+      "id": "markets.merchant-registry",
+      "kind": "engineering",
+      "title": "Merchant Registry",
+      "status": "complete",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Three distinct synthetic merchants with travel fees",
+      "evidence": []
+    },
+    {
+      "id": "markets.price-offers",
+      "kind": "engineering",
+      "title": "Price Offers",
+      "status": "complete",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Seeded daily offers with varying price, stock, percentage promotions",
+      "evidence": []
+    },
+    {
+      "id": "markets.promotion-arithmetic",
+      "kind": "engineering",
+      "title": "Promotion Arithmetic",
+      "status": "complete",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "BOGO, threshold and percent price extension tests",
+      "evidence": []
+    },
+    {
+      "id": "markets.joint-basket",
+      "kind": "engineering",
+      "title": "Joint Basket",
+      "status": "complete",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Basket pricing accounts for trip fixed costs and package quantities",
+      "evidence": []
+    },
+    {
+      "id": "markets.loyalty-and-tax",
+      "kind": "engineering",
+      "title": "Loyalty And Tax",
+      "status": "partial",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Synthetic per-offer loyalty and tax flags with tests, without jurisdiction rules",
+      "evidence": []
+    },
+    {
+      "id": "markets.coupon-stack",
+      "kind": "engineering",
+      "title": "Coupon Stack",
+      "status": "planned",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Cross-item coupons, payment eligibility and mutual exclusions modeled and verified",
+      "evidence": []
+    },
+    {
+      "id": "markets.store-hours-routing",
+      "kind": "engineering",
+      "title": "Store Hours Routing",
+      "status": "planned",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Travel schedule, opening hours and physical transport resources",
+      "evidence": []
+    },
+    {
+      "id": "markets.substitutions",
+      "kind": "engineering",
+      "title": "Substitutions",
+      "status": "planned",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Canonical recipe-compatible substitutions with nutrition/taste and true price tradeoff",
+      "evidence": []
+    },
+    {
+      "id": "markets.package-yield-quality",
+      "kind": "engineering",
+      "title": "Package Yield Quality",
+      "status": "partial",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Basic edible yield, no cold-chain provenance and actual package variability",
+      "evidence": []
+    },
+    {
+      "id": "markets.promotional-future-belief",
+      "kind": "engineering",
+      "title": "Promotional Future Belief",
+      "status": "planned",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Price forecasts are beliefs; agent cannot observe future market draws",
+      "evidence": []
+    },
+    {
+      "id": "markets.real-retailer-adapter",
+      "kind": "engineering",
+      "title": "Real Retailer Adapter",
+      "status": "blocked",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Current sourced time-stamped offers with API rights, permissions and quality audit",
+      "evidence": []
+    },
+    {
+      "id": "markets.tax-jurisdiction",
+      "kind": "engineering",
+      "title": "Tax Jurisdiction",
+      "status": "planned",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Geo-validated food tax treatment, deposits and fees",
+      "evidence": []
+    },
+    {
+      "id": "markets.returns-and-refunds",
+      "kind": "engineering",
+      "title": "Returns And Refunds",
+      "status": "planned",
+      "depends_on": [
+        "markets.root"
+      ],
+      "acceptance": "Reversal transactions and returns ledger conservation",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.root",
+      "kind": "epic",
+      "title": "Household Finance subsystem",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.weekly-envelope",
+      "kind": "engineering",
+      "title": "Weekly Envelope",
+      "status": "complete",
+      "depends_on": [
+        "household-finance.root",
+        "foundation.root"
+      ],
+      "acceptance": "Weekly dinner budget hard cap enforced per week",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.money-ledger",
+      "kind": "engineering",
+      "title": "Money Ledger",
+      "status": "complete",
+      "depends_on": [
+        "household-finance.root"
+      ],
+      "acceptance": "Separate travel and food expenditure, no negative charge",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.multicategory-budget",
+      "kind": "engineering",
+      "title": "Multicategory Budget",
+      "status": "planned",
+      "depends_on": [
+        "household-finance.root"
+      ],
+      "acceptance": "Household groceries, utilities, eating out and fixed costs share time-indexed envelopes",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.payment-settlement",
+      "kind": "engineering",
+      "title": "Payment Settlement",
+      "status": "planned",
+      "depends_on": [
+        "household-finance.root"
+      ],
+      "acceptance": "Cash, card, digital coupons, gift card and refunds with audit trace",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.time-opportunity-cost",
+      "kind": "engineering",
+      "title": "Time Opportunity Cost",
+      "status": "partial",
+      "depends_on": [
+        "household-finance.root"
+      ],
+      "acceptance": "Store trip monetary fees exist; opportunity cost and labor are not priced",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.cashflow-forecast",
+      "kind": "engineering",
+      "title": "Cashflow Forecast",
+      "status": "planned",
+      "depends_on": [
+        "household-finance.root"
+      ],
+      "acceptance": "Cash timing, paydays, reserves, shocks and bounded forecast distributions",
+      "evidence": []
+    },
+    {
+      "id": "household-finance.spend-equity",
+      "kind": "engineering",
+      "title": "Spend Equity",
+      "status": "planned",
+      "depends_on": [
+        "household-finance.root"
+      ],
+      "acceptance": "Explicit distributions and tradeoffs across household members",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.root",
+      "kind": "epic",
+      "title": "Nutrition subsystem",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.household-three-profiles",
+      "kind": "engineering",
+      "title": "Household Three Profiles",
+      "status": "complete",
+      "depends_on": [
+        "nutrition.root",
+        "foundation.root"
+      ],
+      "acceptance": "Demo husband/wife/child identities with configurable dinner reference",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.member-config-api",
+      "kind": "engineering",
+      "title": "Member Config Api",
+      "status": "complete",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Validated request to change member age, role, preferences baseline restrictions",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.calorie-allocation",
+      "kind": "engineering",
+      "title": "Calorie Allocation",
+      "status": "complete",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Dinner nutrients proportionally served using supplied reference inputs",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.protein-fiber-accounts",
+      "kind": "engineering",
+      "title": "Protein Fiber Accounts",
+      "status": "complete",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Individual consumed protein and kcal tracked with synthetic acceptance",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.allergen-hard-screen",
+      "kind": "engineering",
+      "title": "Allergen Hard Screen",
+      "status": "complete",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Reject recipes containing registered allergens",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.texture-constraints",
+      "kind": "engineering",
+      "title": "Texture Constraints",
+      "status": "complete",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Reject configured child texture exclusions",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.micronutrient-coverage",
+      "kind": "engineering",
+      "title": "Micronutrient Coverage",
+      "status": "partial",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Ingredient calcium/iron/sodium tracked; no full daily RDA adequacy constraint",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.growth-stage-guidance",
+      "kind": "engineering",
+      "title": "Growth Stage Guidance",
+      "status": "planned",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Source-based pediatric stage constraints validated independently by experts",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.medical-condition-guidance",
+      "kind": "engineering",
+      "title": "Medical Condition Guidance",
+      "status": "blocked",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Clinician-reviewed data provenance, consent and medical correctness validation",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.actual-consumption-observation",
+      "kind": "engineering",
+      "title": "Actual Consumption Observation",
+      "status": "partial",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Acceptance factor simulated; no observational real-world measurement",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.intake-all-day",
+      "kind": "engineering",
+      "title": "Intake All Day",
+      "status": "planned",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Breakfast, lunch, snacks, school and away-from-home meals tracked",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.dietary-uncertainty",
+      "kind": "engineering",
+      "title": "Dietary Uncertainty",
+      "status": "planned",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Measurement uncertainty and nutrient loss during cooking",
+      "evidence": []
+    },
+    {
+      "id": "nutrition.fairness-and-autonomy",
+      "kind": "engineering",
+      "title": "Fairness And Autonomy",
+      "status": "planned",
+      "depends_on": [
+        "nutrition.root"
+      ],
+      "acceptance": "Preferences/food autonomy separate from coercive objective; constraints never pressure children to eat",
+      "evidence": []
+    },
+    {
+      "id": "inventory.root",
+      "kind": "epic",
+      "title": "Inventory subsystem",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root",
+        "markets.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "inventory.lot-receive",
+      "kind": "engineering",
+      "title": "Lot Receive",
+      "status": "complete",
+      "depends_on": [
+        "inventory.root",
+        "foundation.root",
+        "markets.root"
+      ],
+      "acceptance": "Purchases create unique dated lots with grams and paid cents",
+      "evidence": []
+    },
+    {
+      "id": "inventory.fefo",
+      "kind": "engineering",
+      "title": "Fefo",
+      "status": "complete",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Consume earliest-expiring available lots first",
+      "evidence": []
+    },
+    {
+      "id": "inventory.expiration",
+      "kind": "engineering",
+      "title": "Expiration",
+      "status": "complete",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Expired stocks transferred to waste without loss of mass",
+      "evidence": []
+    },
+    {
+      "id": "inventory.freezing",
+      "kind": "engineering",
+      "title": "Freezing",
+      "status": "complete",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Partial fridge-to-freezer transfer with finite freezer capacity",
+      "evidence": []
+    },
+    {
+      "id": "inventory.prepared-leftovers",
+      "kind": "engineering",
+      "title": "Prepared Leftovers",
+      "status": "complete",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Reuse of batch-prepared portions and expiry tracking",
+      "evidence": []
+    },
+    {
+      "id": "inventory.mass-conservation",
+      "kind": "engineering",
+      "title": "Mass Conservation",
+      "status": "complete",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Opening+purchase = live+consumed+waste ledger invariant",
+      "evidence": []
+    },
+    {
+      "id": "inventory.storage-temp-history",
+      "kind": "engineering",
+      "title": "Storage Temp History",
+      "status": "planned",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Time-temperature history as state and storage process transitions",
+      "evidence": []
+    },
+    {
+      "id": "inventory.crosscontamination",
+      "kind": "engineering",
+      "title": "Crosscontamination",
+      "status": "planned",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Equipment handling, allergen contact, sanitizing and exposure risks",
+      "evidence": []
+    },
+    {
+      "id": "inventory.stochastic-deterioration",
+      "kind": "engineering",
+      "title": "Stochastic Deterioration",
+      "status": "planned",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Calibrated uncertainty in perishable quality and microbial growth",
+      "evidence": []
+    },
+    {
+      "id": "inventory.food-return-donation",
+      "kind": "engineering",
+      "title": "Food Return Donation",
+      "status": "planned",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Disposal, donation, returns, compost as real resource transitions",
+      "evidence": []
+    },
+    {
+      "id": "inventory.pantry-scanning",
+      "kind": "engineering",
+      "title": "Pantry Scanning",
+      "status": "blocked",
+      "depends_on": [
+        "inventory.root"
+      ],
+      "acceptance": "Barcodes/receipts/weight sensors with opt-in privacy and verified data quality",
+      "evidence": []
+    },
+    {
+      "id": "meals.root",
+      "kind": "epic",
+      "title": "Meals subsystem",
+      "status": "partial",
+      "depends_on": [
+        "nutrition.root",
+        "inventory.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "meals.recipe-catalog",
+      "kind": "engineering",
+      "title": "Recipe Catalog",
+      "status": "complete",
+      "depends_on": [
+        "meals.root",
+        "nutrition.root",
+        "inventory.root"
+      ],
+      "acceptance": "Eight executable sample recipes with ingredient grams and operations",
+      "evidence": []
+    },
+    {
+      "id": "meals.meal-selection",
+      "kind": "engineering",
+      "title": "Meal Selection",
+      "status": "complete",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Recipe candidates and menu-history penalty evaluated by macro policy",
+      "evidence": []
+    },
+    {
+      "id": "meals.menu-variety",
+      "kind": "engineering",
+      "title": "Menu Variety",
+      "status": "complete",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Repeat penalty with scored meal variety",
+      "evidence": []
+    },
+    {
+      "id": "meals.acceptance-preference",
+      "kind": "engineering",
+      "title": "Acceptance Preference",
+      "status": "complete",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Person-specific synthetic preference and consumption draw",
+      "evidence": []
+    },
+    {
+      "id": "meals.recipe-substitutions",
+      "kind": "engineering",
+      "title": "Recipe Substitutions",
+      "status": "planned",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Type-safe recipe alternatives with verified allergen and nutrition adjustments",
+      "evidence": []
+    },
+    {
+      "id": "meals.portion-optimization",
+      "kind": "engineering",
+      "title": "Portion Optimization",
+      "status": "partial",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Reference-proportional portions now; true multi-objective individual allocation pending",
+      "evidence": []
+    },
+    {
+      "id": "meals.batch-preparation",
+      "kind": "engineering",
+      "title": "Batch Preparation",
+      "status": "complete",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Batch factor 2 and prepared leftovers for next day",
+      "evidence": []
+    },
+    {
+      "id": "meals.dinner-counting",
+      "kind": "engineering",
+      "title": "Dinner Counting",
+      "status": "complete",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Single dinner per day tracked; unserved dinners penalized",
+      "evidence": []
+    },
+    {
+      "id": "meals.meal-calendar",
+      "kind": "engineering",
+      "title": "Meal Calendar",
+      "status": "planned",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Time-indexed menu plan respecting availability and planned absence",
+      "evidence": []
+    },
+    {
+      "id": "meals.real-recipe-ingestion",
+      "kind": "engineering",
+      "title": "Real Recipe Ingestion",
+      "status": "blocked",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Licensed, traceable ingredient quantities and chemistry calibrated recipes",
+      "evidence": []
+    },
+    {
+      "id": "meals.shopping-meal-coupling",
+      "kind": "engineering",
+      "title": "Shopping Meal Coupling",
+      "status": "complete",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Recipe needs trigger basket purchase and inventory draw",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.root",
+      "kind": "epic",
+      "title": "Kitchen subsystem",
+      "status": "partial",
+      "depends_on": [
+        "meals.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.operation-dag",
+      "kind": "engineering",
+      "title": "Operation Dag",
+      "status": "complete",
+      "depends_on": [
+        "kitchen.root",
+        "meals.root"
+      ],
+      "acceptance": "Recipes express predecessor graph and required resource",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.resource-capacity-schedule",
+      "kind": "engineering",
+      "title": "Resource Capacity Schedule",
+      "status": "complete",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Deterministic list scheduler tracks limited burners, counters, sink, person",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.critical-path-bound",
+      "kind": "engineering",
+      "title": "Critical Path Bound",
+      "status": "complete",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Report precedence lower bound independently from scheduled makespan",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.thermal-proxy",
+      "kind": "engineering",
+      "title": "Thermal Proxy",
+      "status": "complete",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Reduced-order thermodynamic surface/core/pan and moisture educational proxy",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.native-thermal-kernel",
+      "kind": "engineering",
+      "title": "Native Thermal Kernel",
+      "status": "complete",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "GCC compiles the freestanding C reduced heat kernel smoke-tested",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.stochastic-operation-time",
+      "kind": "engineering",
+      "title": "Stochastic Operation Time",
+      "status": "planned",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Time distributions, interruption and failure shocks with trace",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.true-concurrent-labor",
+      "kind": "engineering",
+      "title": "True Concurrent Labor",
+      "status": "planned",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Individual skill, attention, fatigue and task switching resource model",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.equipment-geometry",
+      "kind": "engineering",
+      "title": "Equipment Geometry",
+      "status": "planned",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "3D pan contact, food geometry and physical FVM solver",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.physics-calibration",
+      "kind": "engineering",
+      "title": "Physics Calibration",
+      "status": "blocked",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Controlled food measurements, parameters and uncertainty evaluation",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.validated-cook-safety",
+      "kind": "engineering",
+      "title": "Validated Cook Safety",
+      "status": "blocked",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Expert-reviewed temperature/lethality and handling hazard evaluation",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.real-energy-meter",
+      "kind": "engineering",
+      "title": "Real Energy Meter",
+      "status": "planned",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Calibrated equipment energy use and electricity price calendar",
+      "evidence": []
+    },
+    {
+      "id": "kitchen.resting-serving-sync",
+      "kind": "engineering",
+      "title": "Resting Serving Sync",
+      "status": "partial",
+      "depends_on": [
+        "kitchen.root"
+      ],
+      "acceptance": "Rest and serve DAG modeled; all plates simultaneous serving constraint pending",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.root",
+      "kind": "epic",
+      "title": "Beads Runtime subsystem",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root",
+        "meals.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.typed-bead",
+      "kind": "engineering",
+      "title": "Typed Bead",
+      "status": "complete",
+      "depends_on": [
+        "beads-runtime.root",
+        "foundation.root",
+        "meals.root"
+      ],
+      "acceptance": "Typed task instances, labels, duration/resource and provenance",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.add-dependency-validation",
+      "kind": "engineering",
+      "title": "Add Dependency Validation",
+      "status": "complete",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Missing, duplicate and self dependencies rejected",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.topological-execution",
+      "kind": "engineering",
+      "title": "Topological Execution",
+      "status": "complete",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "DAG compiler enforces acyclic topology and predecessor order",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.household-goal-compiler",
+      "kind": "engineering",
+      "title": "Household Goal Compiler",
+      "status": "complete",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Day execution graph expands price quotes, individual checks and cooking operations",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.ready-queue",
+      "kind": "engineering",
+      "title": "Ready Queue",
+      "status": "complete",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Ready nodes derived by completion status of dependencies",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.handler-side-effects",
+      "kind": "engineering",
+      "title": "Handler Side Effects",
+      "status": "partial",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Graph passes structural nodes; per-node atomic effects/verifiers not implemented",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.failure-recovery",
+      "kind": "engineering",
+      "title": "Failure Recovery",
+      "status": "partial",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "DAG can mark blocked/fail; actual recovery graph generation pending",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.conditional-expansion",
+      "kind": "engineering",
+      "title": "Conditional Expansion",
+      "status": "planned",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Task generator branches when price expires, ingredient rejected, appliance fails",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.typed-counterfactual-beads",
+      "kind": "engineering",
+      "title": "Typed Counterfactual Beads",
+      "status": "planned",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Graph node interventions matched across forked world trajectories",
+      "evidence": []
+    },
+    {
+      "id": "beads-runtime.graph-node-resource-policy",
+      "kind": "engineering",
+      "title": "Graph Node Resource Policy",
+      "status": "planned",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Graph agent operates on ready-node and resource masks",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.root",
+      "kind": "epic",
+      "title": "Rl And Evaluation subsystem",
+      "status": "partial",
+      "depends_on": [
+        "beads-runtime.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.partial-observation",
+      "kind": "engineering",
+      "title": "Partial Observation",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root",
+        "beads-runtime.root"
+      ],
+      "acceptance": "Vector excludes future prices and RNG state",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.eight-macro-actions",
+      "kind": "engineering",
+      "title": "Eight Macro Actions",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Explicit policy choice with reproducible reward and score",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.scripted-baselines",
+      "kind": "engineering",
+      "title": "Scripted Baselines",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Eight scripted household strategies with comparable evaluation",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.cpu-ppo",
+      "kind": "engineering",
+      "title": "Cpu Ppo",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Actor-critic clipped PPO/GAE train loop and checkpoint",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.checkpoint-evaluation",
+      "kind": "engineering",
+      "title": "Checkpoint Evaluation",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Saved PPO evaluated against all macros on paired seeded episodes",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.fresh-heldout",
+      "kind": "engineering",
+      "title": "Fresh Heldout",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "12 new seeds 20001\u201320012, 30-day evaluation preserving no learned advantage",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.bootstrap-confidence",
+      "kind": "engineering",
+      "title": "Bootstrap Confidence",
+      "status": "complete",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Paired bootstrap interval on score differences",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.ppo-reward-parity",
+      "kind": "engineering",
+      "title": "Ppo Reward Parity",
+      "status": "partial",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Reward correlates with independent score but no comprehensive exploitation test",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.world-model-planning",
+      "kind": "engineering",
+      "title": "World Model Planning",
+      "status": "planned",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Short-horizon search, progressive widening, belief branching",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.hierarchical-actions",
+      "kind": "engineering",
+      "title": "Hierarchical Actions",
+      "status": "planned",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Trained joint procurement/scheduling/physical controllers with variable durations",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.distribution-shift",
+      "kind": "engineering",
+      "title": "Distribution Shift",
+      "status": "planned",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Hold out families of store, household, recipe, demand and equipment generators",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.novel-domain-transfer",
+      "kind": "engineering",
+      "title": "Novel Domain Transfer",
+      "status": "planned",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Evaluate transfer to laundry, parking, industrial scheduling environments",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.adversarial-policy-tests",
+      "kind": "engineering",
+      "title": "Adversarial Policy Tests",
+      "status": "planned",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Find degenerate learned policies via stress scenario generation",
+      "evidence": []
+    },
+    {
+      "id": "rl-and-evaluation.model-parity-with-native",
+      "kind": "engineering",
+      "title": "Model Parity With Native",
+      "status": "planned",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Same seed/action serialized trajectories match Python vs Ocean C within tolerance",
+      "evidence": []
+    },
+    {
+      "id": "interface.root",
+      "kind": "epic",
+      "title": "Interface subsystem",
+      "status": "partial",
+      "depends_on": [
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "interface.desktop-dashboard",
+      "kind": "engineering",
+      "title": "Desktop Dashboard",
+      "status": "complete",
+      "depends_on": [
+        "interface.root",
+        "rl-and-evaluation.root"
+      ],
+      "acceptance": "Live state and synthetic market, meal, member ledgers shown in editorial UI",
+      "evidence": []
+    },
+    {
+      "id": "interface.mobile-layout",
+      "kind": "engineering",
+      "title": "Mobile Layout",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "390 px Chromium screenshot and controls visually inspected",
+      "evidence": []
+    },
+    {
+      "id": "interface.beads-inspector",
+      "kind": "engineering",
+      "title": "Beads Inspector",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Typed node groups with prerequisite/resource detail on click",
+      "evidence": []
+    },
+    {
+      "id": "interface.kitchen-gantt",
+      "kind": "engineering",
+      "title": "Kitchen Gantt",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Operation resource allocation timeline with thermal proxy",
+      "evidence": []
+    },
+    {
+      "id": "interface.counterfactual-console",
+      "kind": "engineering",
+      "title": "Counterfactual Console",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Eight action alternatives available via live API or replay data",
+      "evidence": []
+    },
+    {
+      "id": "interface.offline-replay",
+      "kind": "engineering",
+      "title": "Offline Replay",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Self-contained HTML with eight prerecorded trajectories and alternative decisions",
+      "evidence": []
+    },
+    {
+      "id": "interface.api-session",
+      "kind": "engineering",
+      "title": "Api Session",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "FastAPI loopback session with serialized mutation",
+      "evidence": []
+    },
+    {
+      "id": "interface.world-config-controls",
+      "kind": "engineering",
+      "title": "World Config Controls",
+      "status": "complete",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Live dashboard configuration edits budget, ages, dinner references, allergens and burner capacity through validated API",
+      "evidence": []
+    },
+    {
+      "id": "interface.read-only-share-link",
+      "kind": "engineering",
+      "title": "Read Only Share Link",
+      "status": "planned",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Signed, redactable snapshot without household identifiers",
+      "evidence": []
+    },
+    {
+      "id": "interface.household-consent",
+      "kind": "engineering",
+      "title": "Household Consent",
+      "status": "planned",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Member data lifecycle, privacy boundaries and permission model",
+      "evidence": []
+    },
+    {
+      "id": "interface.deployment-auth",
+      "kind": "engineering",
+      "title": "Deployment Auth",
+      "status": "planned",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Networked deployment requires CSRF, authentication, secrets and multi-user isolation",
+      "evidence": []
+    },
+    {
+      "id": "interface.browser-live-network-check",
+      "kind": "engineering",
+      "title": "Browser Live Network Check",
+      "status": "blocked",
+      "depends_on": [
+        "interface.root"
+      ],
+      "acceptance": "Runtime Chromium policy prohibits browser navigation to loopback HTTP",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.root",
+      "kind": "epic",
+      "title": "Upstream And Release subsystem",
+      "status": "partial",
+      "depends_on": [
+        "foundation.root"
+      ],
+      "acceptance": "Section objective implemented and independently verified",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.upstream-api-inspection",
+      "kind": "engineering",
+      "title": "Upstream Api Inspection",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root",
+        "foundation.root"
+      ],
+      "acceptance": "PufferLib 5.0 Minimal and pufferenv interface fetched via GitHub connector",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.local-source-git",
+      "kind": "engineering",
+      "title": "Local Source Git",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Original Household World source committed into local Git repository",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.ocean-header",
+      "kind": "engineering",
+      "title": "Ocean Header",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Reduced fidelity Puffer 5.0-styled Env header authored",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.ocean-stub-smoke",
+      "kind": "engineering",
+      "title": "Ocean Stub Smoke",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "GCC stub C ABI smoke test passes without CUDA",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.native-upstream-clone",
+      "kind": "engineering",
+      "title": "Native Upstream Clone",
+      "status": "blocked",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "github.com DNS unavailable from current container",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.puffer-cpu-build",
+      "kind": "engineering",
+      "title": "Puffer Cpu Build",
+      "status": "blocked",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Needs full PufferLib 5.0 checkout and its build toolchain",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.puffer-gpu-training",
+      "kind": "engineering",
+      "title": "Puffer Gpu Training",
+      "status": "blocked",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Needs CUDA-compatible NVIDIA GPU and full checkout",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.test-suite",
+      "kind": "engineering",
+      "title": "Test Suite",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Full deterministic pytest suite passes locally",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.browser-screenshots",
+      "kind": "engineering",
+      "title": "Browser Screenshots",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Actual Chromium desktop and mobile replay visual screenshots",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.source-archive",
+      "kind": "engineering",
+      "title": "Source Archive",
+      "status": "complete",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Versioned, portable Git-ready archive with checkpoints/evidence",
+      "evidence": []
+    },
+    {
+      "id": "upstream-and-release.cloud-hosting",
+      "kind": "engineering",
+      "title": "Cloud Hosting",
+      "status": "planned",
+      "depends_on": [
+        "upstream-and-release.root"
+      ],
+      "acceptance": "Secure deployment to supported hosting, with explicit user authorization",
+      "evidence": []
+    }
+  ]
+}

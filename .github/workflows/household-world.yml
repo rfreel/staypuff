@@ -1,0 +1,45 @@
+name: Household World checks
+on:
+  push:
+    paths:
+      - 'projects/household-world/**'
+      - 'ocean/household/**'
+      - '.github/workflows/household-world.yml'
+  pull_request:
+    paths:
+      - 'projects/household-world/**'
+      - 'ocean/household/**'
+      - '.github/workflows/household-world.yml'
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    defaults:
+      run:
+        working-directory: projects/household-world
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install research dependencies
+        run: |
+          python -m pip install -e '.[web,test]' httpx numpy
+          python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - name: Test Python implementation
+        run: python -m pytest -q
+      - name: Compile native kernels
+        run: bash scripts/build_native.sh
+      - name: Compile and evaluate full Staypuff Ocean integration
+        working-directory: .
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends libgl-dev libomp-dev
+          ./build.sh household --cpu
+          output=$(timeout 30 ./household --headless --eval_episodes=2)
+          echo "$output"
+          grep -q 'n=2 ' <<< "$output"
+      - name: Verify development Beads DAG
+        run: python scripts/inspect_backlog.py
+      - name: Run deterministic scenario
+        run: python -m household.cli simulate --seed 17 --days 14 --action LOW_WASTE
