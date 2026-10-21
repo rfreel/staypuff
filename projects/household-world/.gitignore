@@ -11,7 +11,14 @@ dist/
 *.o
 artifacts/server.log
 artifacts/server.pid
-artifacts/preview.html
-artifacts/sample-trajectory.json
 .DS_Store
 vendor/PufferLib-5.0/
+
+# PufferVis local replay/screenshots; only verified evidence is committed
+artifacts/puffervis-preview.html
+artifacts/puffervis-desktop-day1.png
+artifacts/puffervis-desktop.png
+artifacts/puffervis-desktop-new.png
+artifacts/puffervis-desktop-new.png.bak
+artifacts/puffervis-mobile-new.png
+artifacts/check-graphics.log

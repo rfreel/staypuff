@@ -10,6 +10,11 @@ typedef struct Agent {
     unsigned char* action_mask; int policy;
 } Agent;
 typedef struct { unsigned char r,g,b,a; } Color;
+typedef struct { float x,y; } Vector2;
+static void DrawTriangle(Vector2 a,Vector2 b,Vector2 c,Color color){(void)a;(void)b;(void)c;(void)color;}
+static void DrawLineEx(Vector2 a,Vector2 b,float width,Color color){(void)a;(void)b;(void)width;(void)color;}
+static void DrawCircleV(Vector2 center,float radius,Color color){(void)center;(void)radius;(void)color;}
+static void DrawRectangle(int x,int y,int w,int h,Color color){(void)x;(void)y;(void)w;(void)h;(void)color;}
 #define KEY_ESCAPE 256
 static int IsWindowReady(void) {return 0;}
 static int IsKeyDown(int k) {(void)k;return 0;}

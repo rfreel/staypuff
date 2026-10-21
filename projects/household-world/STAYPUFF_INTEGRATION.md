@@ -1,38 +1,31 @@
-# Household World in Staypuff
+# Household World / Staypuff integration
 
-The standalone Household World project is vendored under `projects/household-world/`.
-Its PufferLib 5.0-shaped native projection is installed under `ocean/household/household.h`.
-No upstream existing files are replaced.
+Source lives in `projects/household-world/`; native adapter in `ocean/household/household.h`.
+The shared native PufferVis entrypoint `src/puffervis.h` (at the Staypuff repository root) forwards to `projects/household-world/native/puffervis.h`.
 
-## Python simulator and dashboard
+## Browser graphics
 
 ```sh
 cd projects/household-world
-python -m pip install -e '.[web,test,rl]'
-python -m pytest -q
+python -m pip install -e '.[web,test]'
 python -m household.cli serve --port 8765
 ```
 
-## Native environment
+Open `http://127.0.0.1:8765` and select `Live world`. It runs the real deterministic synthetic Python simulator, not an imported RL model.
 
-From the Staypuff repository root, test the upstream PufferLib build integration:
+## Native CPU PufferLib viewer
 
 ```sh
+# From the Staypuff root:
 ./build.sh household --cpu
+./household
 ```
 
-The local native stub compilation was tested; the full upstream build integration
-and CUDA training are not verified. The native environment is reduced-fidelity and
-is **not** behaviorally identical to the Python simulator.
-
-## Regenerate offline replay and training weights
+If Raylib is unavailable, the standalone C stub checks syntax and executes `puf_render`:
 
 ```sh
 cd projects/household-world
-python -m household.cli preview
-python -m household.cli train --updates 70 --envs 6 --days 12 --seed 17
+bash scripts/build_native.sh
 ```
 
-The offline replay may be large and is deliberately not versioned.
-Bundled prices, nutrition references and household profiles are synthetic;
-the model is not a food-safety or clinical planning service.
+See `docs/PUFFERVIS.md` for a scene protocol, warehouse example, replay, constraints, and renderer limitations.

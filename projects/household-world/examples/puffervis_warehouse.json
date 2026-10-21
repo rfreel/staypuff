@@ -1,0 +1,18 @@
+{
+ "schema":"puffervis.scene.v1",
+ "scene_id":"warehouse.example",
+ "revision":0,
+ "provenance":"authored_demo_fixture",
+ "layout_provenance":"synthetic_layout",
+ "camera":{"projection":"isometric","target":[5,0,4],"zoom":1},
+ "world":{"width":10,"depth":8,"tile_size":1},
+ "zones":[{"id":"warehouse","label":"WAREHOUSE / TEST SCENE","x":1,"z":1,"width":8,"depth":6,"material":"slate"}],
+ "entities":[
+    {"id":"robot1","visual":"robot","position":[2,0,5],"rotation":0,"variant":"amber","label":"Warehouse robot","facts":{"battery_pct":73},"signal":"active"},
+    {"id":"box1","visual":"crate","position":[4,0,4],"rotation":0,"variant":"stored","label":"Parcel 001","facts":{"weight_kg":4.5},"signal":""},
+    {"id":"rack1","visual":"shelves","position":[6,0,2],"rotation":0,"variant":"","label":"Rack A","facts":{"capacity":12},"signal":""}
+ ],
+ "connections":[{"from":"robot1","to":"box1","kind":"illustrative_flow"}],
+ "hud":{"day":0,"horizon":12,"score":0,"budget_remaining_cents":0,"dinners_served":0,"task_count":1},
+ "annotations":["Generic fixture; no connection to real household state."]
+}

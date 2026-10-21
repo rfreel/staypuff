@@ -9,7 +9,8 @@
     <div class="rail-top"><div class="sigil">H<span>W</span><i>·</i></div><div class="rail-name">HOUSEHOLD<br>WORLD <span>Ω</span></div></div>
     <div class="rail-rule"></div><div class="rail-kicker">THE DOMESTIC<br>DECISION SYSTEM</div>
     <nav id="nav" aria-label="Navigation">
-      <button class="nav-item active" data-view="overview"><span class="nav-n">01</span> Situation <span class="nav-arrow">↗</span></button>
+      <button class="nav-item active" data-view="world"><span class="nav-n">00</span> Live world <span class="nav-arrow">↗</span></button>
+      <button class="nav-item" data-view="overview"><span class="nav-n">01</span> Situation <span class="nav-arrow">↗</span></button>
       <button class="nav-item" data-view="market"><span class="nav-n">02</span> Procurement <span class="nav-arrow">↗</span></button>
       <button class="nav-item" data-view="kitchen"><span class="nav-n">03</span> Kitchen <span class="nav-arrow">↗</span></button>
       <button class="nav-item" data-view="beads"><span class="nav-n">04</span> Beads graph <span class="nav-arrow">↗</span></button>
@@ -23,7 +24,29 @@
     <section class="hero"><div class="eyebrow"><span class="small-square"></span> A COUPLED HOUSEHOLD SIMULATION</div><div class="hero-title">Decisions<span class="accent">,</span><br><em>made visible.</em></div><div class="hero-foot"><p>Three people. One budget. A changing market. Every meal is a chain of physical, economic and human consequences.</p><div class="abstract-figure"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orbit o3"></div><div class="orbit-center"></div><div class="tiny-caption">VARIABLES → ACTIONS → CONSEQUENCES</div></div></div></section>
     <section class="controlbar" aria-label="Simulation controls"><div class="control-label"><span class="micro-label">POLICY / DAILY DECISION</span><select id="action" aria-label="Decision policy"><option value="0">00 · Balanced coordination</option><option value="1">01 · Cheapest feasible basket</option><option value="2">02 · Promotion targeting</option><option value="3">03 · Low waste</option><option value="4">04 · Nutrition priority</option><option value="5">05 · Pantry only</option><option value="6">06 · Batch cooking</option><option value="7">07 · Nearby stores</option></select></div><div class="control-buttons"><button class="btn-plain" id="configure" title="Change synthetic household">CONFIGURE</button><button class="btn-plain" id="reset" title="Reset scenario">↶ <span>RESET</span></button><button class="btn-secondary" id="seven">+7 DAYS</button><button class="btn-primary" id="step">ADVANCE ONE DAY <b>→</b></button></div></section>
     <div class="toast" id="toast" role="status" aria-live="polite"></div>
-    <section class="view active" id="view-overview">
+    <section class="view active" id="view-world">
+      <div class="section-head"><span>00 / THE LIVE WORLD</span><span class="section-side">SCENE GRAPH · OBSERVE · REPLAY</span></div>
+      <div class="world-intro"><div><span class="world-kicker">PUFFERVIS / V1 · EXPERIMENTAL GAME VIEWER</span><h1>Watch the world<br><em>make decisions.</em></h1></div><p>One changing market. One family. Every purchase becomes an inventory lot, then a meal, then tomorrow's constraints. This is a deterministic visualization of synthetic simulator state, not a real household floor plan.</p></div>
+      <div class="world-shell">
+        <div class="world-screen">
+          <div class="world-toolbar"><div class="world-mode"><span class="world-live-dot"></span><span id="worldLiveState">SIMULATED WORLD / DAY 00</span></div><div class="world-tools">
+            <button class="world-tool" id="cameraReset" title="Reset camera">RESET VIEW</button>
+            <button class="world-tool" id="cameraMinus" aria-label="Zoom out">−</button>
+            <button class="world-tool" id="cameraPlus" aria-label="Zoom in">+</button>
+          </div></div>
+          <canvas id="worldCanvas" tabindex="0" role="img" aria-label="Interactive isometric scene of the synthetic household kitchen, market, inventory, and people. Drag to pan, scroll to zoom, click an item to inspect.">An interactive browser with Canvas support is required for the rendered world.</canvas>
+          <div class="world-bottom"><span>DRAG TO PAN <i>·</i> SCROLL TO ZOOM <i>·</i> SELECT ANY OBJECT</span><button id="worldPlay" class="world-play">▶ PLAY SIMULATION</button></div>
+        </div>
+        <aside class="world-inspector">
+          <div class="world-inspector-head"><span>OBJECT INSPECTOR</span><span>↗</span></div>
+          <div id="worldInspector" class="world-inspector-body"><span class="world-empty-mark">◎</span><h2>Nothing selected.</h2><p>Select any object to examine its exact simulated state, including quantities, constraints, and provenance.</p></div>
+          <div class="world-inspector-footer"><span>VIEW MODE</span><div class="world-filters" role="group" aria-label="Scene layer filter"><button class="world-filter active" data-scene-layer="all">ALL</button><button class="world-filter" data-scene-layer="kitchen">HOME</button><button class="world-filter" data-scene-layer="market">MARKET</button></div><label class="world-flow-toggle"><input type="checkbox" id="flowToggle" checked> SHOW ILLUSTRATIVE FLOWS</label></div>
+        </aside>
+      </div>
+      <div class="world-under"><div><span>01 / SCENE PROTOCOL</span><strong id="worldEntities">0 entities</strong><small>Stable objects across state snapshots</small></div><div><span>02 / MEAL PROCESS</span><strong id="worldMeal">Not served yet</strong><small>Derived from authoritative simulation</small></div><div><span>03 / GRAPH</span><strong id="worldBeads">0 beads</strong><small>Tasks traced, not manufactured</small></div></div>
+      <div class="world-disclaimer">RENDERING IS OUTSIDE THE POLICY LOOP. Authored geometry is illustrative. No simulated temperature is a food-safety certification. All prices, people, and markets are synthetic.</div>
+    </section>
+    <section class="view" id="view-overview">
       <div class="section-head"><span>01 / HOUSEHOLD SITUATION</span><span class="section-side">STATE OBSERVATION · DISCRETE DAY</span></div>
       <div class="metrics"><div class="metric"><div class="metric-label">TOTAL GROCERY SPEND <span>↗</span></div><div class="metric-main" id="mSpend">$0<span>.00</span></div><div class="metric-foot" id="mSpendSub">of $145 / week</div></div><div class="metric"><div class="metric-label">DINNERS SERVED <span>↗</span></div><div class="metric-main" id="mServed">0<span>/30</span></div><div class="metric-foot" id="mServedSub">0.0% demand fulfilled</div></div><div class="metric"><div class="metric-label">FOOD WASTE <span>↗</span></div><div class="metric-main" id="mWaste">0<span>g</span></div><div class="metric-foot">Expired + rejected portions</div></div><div class="metric metric-emphasis"><div class="metric-label">EVALUATION SCORE <span>↗</span></div><div class="metric-main" id="mScore">—<span>/100</span></div><div class="metric-foot">Independent of training reward</div></div></div>
       <div class="two-col overview-cols"><article class="panel people-panel"><div class="panel-top"><h2>Individual allocations</h2><span class="panel-count">03 / PROFILES</span></div><div class="sublead">Calories served and consumed are not interchangeable. References are synthetic dinner inputs, not prescribed needs.</div><div id="peopleCards"></div></article><article class="panel"><div class="panel-top"><h2>The evening decision</h2><span class="panel-count" id="lastRecipeTag">AWAITING STEP</span></div><div id="mealPanel"><div class="empty-state">Advance the simulation to observe the first meal decision.</div></div></article></div>
@@ -51,5 +74,6 @@
   <div class="config-bottom"><button type="button" class="btn-secondary" id="cancelConfig">CANCEL</button><button type="submit" class="btn-primary">APPLY & RESET SIMULATION →</button></div>
 </form>
 </dialog>
+<script src="/static/puffervis.js"></script>
 <script src="/static/app.js"></script>
 </body></html>

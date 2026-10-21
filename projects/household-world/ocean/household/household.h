@@ -7,6 +7,7 @@
 #include <stdio.h>
 typedef float obs_t;
 #include "pufferenv.h"
+#include "puffervis.h"
 
 #define OBS_SIZE 32
 #define ACT_SIZES {8}
@@ -69,8 +70,10 @@ void puf_reset(Env* env) {
     hh_observe(env);
 }
 void puf_step(Env* env) {
-    // Transition terminals mark the previous episode for exactly one step.
+    // The previous transition's terminal flag is consumed by the policy
+    // before this call. Clear it only when beginning the next step.
     env->agents[0].terminals[0]=0.0f;
+    if (env->day>=HOUSEHOLD_DAYS) puf_reset(env);
     int day=env->day;
     int act=(int)env->agents[0].actions[0];
     if (act<0 || act>7) act=0;
@@ -117,22 +120,57 @@ void puf_step(Env* env) {
         env->log.served+=env->served;
         env->log.waste+=env->expired;
         env->log.n++;
-        // Reset immediately after scoring, preserving the terminal flag
-        // for the trainer's next observation / recurrent-state reset.
+        // Autoreset for successive CPU headless evaluation episodes.
+        // puf_reset preserves the aggregate log and the terminal flag,
+        // exposing the next episode's initial observation to the policy.
         puf_reset(env);
-    } else {
-        hh_observe(env);
     }
+    hh_observe(env);
 }
 void puf_render(Env* env) {
-    if (!IsWindowReady()) { InitWindow(920,620,"Household World · Puffer Ocean"); SetTargetFPS(30); }
+    if (!IsWindowReady()) { InitWindow(1040,710,"Household World | PufferVis"); SetTargetFPS(30); }
     if (IsKeyDown(KEY_ESCAPE)) exit(0);
     BeginDrawing();
-    ClearBackground((Color){18,25,24,255});
-    DrawText("HOUSEHOLD WORLD / OCEAN PROJECTION",32,30,25,(Color){232,234,221,255});
-    DrawText(TextFormat("DAY %02d / %02d",env->day,HOUSEHOLD_DAYS),32,105,24,(Color){160,215,183,255});
-    DrawText(TextFormat("MEALS %d  |  WEEKLY CASH $%.2f",env->served,env->cash),32,150,24,(Color){232,234,221,255});
-    DrawText("Native C training slice. Full household simulator runs in Python.",32,560,18,(Color){152,166,154,255});
+    ClearBackground(pv_color(19,30,29,255));
+    PV_Camera cam = {515.0f,140.0f,42.0f,22.0f,37.0f};
+    pv_tile(cam,0.0f,0.0f,9.3f,7.7f,pv_color(49,77,71,255));
+    pv_tile(cam,9.5f,0.0f,8.5f,7.7f,pv_color(61,78,62,255));
+    pv_tile(cam,0.0f,7.9f,9.3f,4.7f,pv_color(79,89,74,255));
+    pv_tile(cam,9.5f,7.9f,8.5f,4.7f,pv_color(63,72,65,255));
+    // Three merchants / display objects. No effects on the simulation.
+    for (int i=0;i<3;i++) {
+        const Color color=(i==0?pv_color(219,170,109,255):
+           i==1?pv_color(146,198,204,255):pv_color(152,204,156,255));
+        pv_prism(cam,10.5f+i*2.7f,2.5f,2.0f,1.5f,1.35f,color);
+        pv_caption(cam,9.7f+i*2.7f,2.0f,2.2f,i==0?"CORNER":i==1?"VALUE":"FRESH",pv_color(240,240,216,255));
+    }
+    // Kitchen architecture, produced by the same portable primitive library.
+    pv_prism(cam,1.3f,1.8f,1.3f,1.2f,2.2f,pv_color(215,230,215,255));
+    pv_prism(cam,3.8f,1.8f,1.8f,1.4f,.85f,pv_color(180,219,208,255));
+    pv_prism(cam,6.25f,1.8f,1.7f,1.5f,.85f,pv_color(74,96,91,255));
+    pv_prism(cam,4.0f,4.7f,2.4f,1.8f,.88f,pv_color(220,178,126,255));
+    pv_prism(cam,1.6f,5.7f,1.5f,1.1f,1.55f,pv_color(194,146,105,255));
+    pv_prism(cam,5.2f,9.7f,2.8f,1.9f,.61f,pv_color(215,170,116,255));
+    pv_prism(cam,13.5f,10.0f,4.0f,2.1f,.35f,pv_color(71,99,84,255));
+    // Stock visualization uses actual native inventory values.
+    const char* names[HOUSEHOLD_PRODUCTS]={"PROTEIN","RICE","GREEN","BEANS","FRESH","ROOT"};
+    for(int i=0;i<HOUSEHOLD_PRODUCTS;i++) {
+        if(env->inventory[i] < .01f)continue;
+        float h=.21f+fminf(1.0f,env->inventory[i]/900.0f)*.65f;
+        float x=2.5f+(i%3)*.8f,z=6.6f+(i/3)*.75f;
+        pv_prism(cam,x,z,.65f,.65f,h,pv_color(151,195,135,255));
+        pv_caption(cam,x,h+.3f,z,names[i],pv_color(238,235,209,255));
+    }
+    pv_person(cam,4.0f,11.1f,pv_color(234,181,126,255));
+    pv_person(cam,5.4f,11.1f,pv_color(191,155,166,255));
+    pv_person(cam,6.8f,11.1f,pv_color(128,187,168,255));
+    DrawText("PUFFERVIS  /  HOUSEHOLD WORLD",26,25,25,pv_color(237,239,217,255));
+    DrawText("SCENE VISUALIZATION / NATIVE OCEAN",27,60,13,pv_color(150,183,170,255));
+    DrawText(TextFormat("DAY %02d / %02d    DINNERS %d    BALANCE $%.2f",env->day,HOUSEHOLD_DAYS,
+            env->served,env->cash),26,605,21,pv_color(237,239,217,255));
+    pv_progress(27,645,360,(float)env->day/HOUSEHOLD_DAYS,pv_color(161,216,174,255));
+    DrawText("SYNTHETIC MODEL / AUTHORED VISUAL LAYOUT / NOT FOOD-SAFETY GUIDANCE",27,672,12,
+             pv_color(160,185,168,255));
     EndDrawing();
     puf_web_vsync();
 }

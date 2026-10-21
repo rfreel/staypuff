@@ -11,6 +11,7 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel,Field
 from .world import HouseholdWorld,ACTIONS
 from .models import Person
+from .scene import with_scene, project_household_scene
 
 class StepRequest(BaseModel):
     action:int=Field(ge=0,le=7)
@@ -44,7 +45,7 @@ class Session:
     def reset(self,kwargs=None):
         with self.lock:
             self.world=HouseholdWorld(**(kwargs or {}))
-            return self.world.state()
+            return with_scene(self.world.state())
 
 state=Session()
 app=FastAPI(title='Household World Ω',version='0.2.0',description='Synthetic decision laboratory')
@@ -56,7 +57,7 @@ def index():return FileResponse(WEB/'index.html')
 
 @app.get('/api/state')
 def get_state():
-    with state.lock:return state.world.state()
+    with state.lock:return with_scene(state.world.state())
 
 @app.post('/api/step')
 def step(req:StepRequest):
@@ -64,7 +65,7 @@ def step(req:StepRequest):
         try:
             observation,reward,done,info=state.world.step(req.action)
         except (ValueError,RuntimeError) as exc:raise HTTPException(409,str(exc)) from exc
-        return {'reward':reward,'terminated':done,'info':info,'state':state.world.state()}
+        return {'reward':reward,'terminated':done,'info':info,'state':with_scene(state.world.state())}
 
 @app.post('/api/run')
 def run(req:RunRequest):
@@ -75,7 +76,7 @@ def run(req:RunRequest):
             _,reward,done,info=state.world.step(req.action)
             results.append({'reward':reward,**info})
             if done:break
-        return {'results':results,'state':state.world.state()}
+        return {'results':results,'state':with_scene(state.world.state())}
 
 @app.post('/api/reset')
 def reset():return state.reset()
@@ -106,6 +107,10 @@ def counterfactual():
         alternatives=[state.world.fork(i) for i in range(len(ACTIONS))]
         return {'day':state.world.day,'alternatives':alternatives}
 
+@app.get('/api/scene')
+def visual_scene():
+    with state.lock:return project_household_scene(state.world.state())
+
 @app.get('/api/export')
 def export():
     with state.lock:
@@ -113,7 +118,7 @@ def export():
                 'seed':state.world.seed,'day':state.world.day},
                 'events':[e.__dict__ for e in state.world.events],
                 'graph':state.world.last_graph.serialize(),
-                'state':state.world.state()})
+                'state':with_scene(state.world.state())})
 
 @app.get('/api/health')
 def health():return {'healthy':True,'mode':'synthetic','model':'HWM-Omega'}

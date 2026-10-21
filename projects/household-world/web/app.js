@@ -13,6 +13,7 @@ let replayIndex=0;
 let replayPolicy=0;
 let comparisonCache=null;
 let lastGraphNode=null;
+let worldViewer=null;let worldPlaying=false;let worldPlayTimer=null;
 
 function toast(message){const e=$('#toast');e.textContent=message;e.classList.add('visible');window.clearTimeout(toast.timer);toast.timer=window.setTimeout(()=>e.classList.remove('visible'),5000)}
 async function request(path,options={}){
@@ -36,7 +37,7 @@ async function resetWorld(){if(busy)return;
  try{sim=await request('reset',{method:'POST',body:'{}'});comparisonCache=null;render()}catch(e){toast(e.message)}
 }
 function updateButtons(){const ended=sim&&sim.day>=sim.horizon;$('#step').disabled=busy||ended;$('#seven').disabled=busy||ended;$('#step').innerHTML=(replay?'NEXT REPLAY DAY':'ADVANCE ONE DAY')+' <b>→</b>';$('#engineMode').textContent=replay?'SYNTHETIC / REPLAY':'SYNTHETIC / LIVE'}
-function setView(name){$$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));history.replaceState(null,'','#'+name);if(name==='counterfactual'&&!comparisonCache&&sim?.day<sim?.horizon&&!replay) compare();}
+function setView(name){ if(name!=='world')stopWorldPlayback();document.body.classList.toggle('world-active',name==='world');$$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));history.replaceState(null,'','#'+name);if(name==='counterfactual'&&!comparisonCache&&sim?.day<sim?.horizon&&!replay) compare();}
 function render(){if(!sim)return;
  $('#nowIndicator').textContent=`DAY ${String(sim.day).padStart(2,'0')} / ${String(sim.horizon).padStart(2,'0')}`;
  $('#seedIndicator').textContent='SEED '+String(sim.seed).padStart(4,'0');
@@ -47,7 +48,7 @@ function render(){if(!sim)return;
  $('#mServedSub').textContent=(sim.day?dec((m.dinner_served||0)/sim.day*100,0):'0')+'% of simulated dinners served';
  $('#mWaste').innerHTML=`${(m.household_waste_g||0)>1000?dec(m.household_waste_g/1000,2):dec(m.household_waste_g,0)}<span>${m.household_waste_g>1000?'kg':'g'}</span>`;
  $('#mScore').innerHTML=dec(sim.score,1)+'<span>/100</span>';
- drawPeople();drawMeal();drawInventory();drawMarketMini();drawMarket();drawKitchen();drawBeads();drawComparison();updateButtons();
+ drawPeople();drawMeal();drawInventory();drawMarketMini();drawMarket();drawKitchen();drawBeads();drawComparison();drawWorld();updateButtons();
 }
 function drawPeople(){
  const m=sim.metrics||{},n=(m.dinner_served||0),people=sim.people||[];
@@ -170,7 +171,52 @@ async function saveConfiguration(e){
  catch(err){toast(err.message)}
 }
 
+function renderWorldInspector(entity){
+ const panel=$('#worldInspector');if(!panel)return;
+ if(!entity){panel.innerHTML='<span class="world-empty-mark">◎</span><h2>Nothing selected.</h2><p>Select any object to inspect its synthetic state. Drag the diorama to pan and scroll to zoom.</p>';return;}
+ const facts=entity.facts||{};
+ panel.innerHTML=`<span class="world-inspector-category">${htmlEscape(entity.visual.toUpperCase())} / ${htmlEscape(entity.id)}</span><h2>${htmlEscape(entity.label||entity.id)}</h2><p class="world-inspector-intro">Scene coordinates are authored for illustration. Values below come from the current simulator snapshot.</p><div class="world-fact-list">${Object.entries(facts).map(([k,v])=>`<div><span>${htmlEscape(k.replaceAll('_',' '))}</span><strong>${htmlEscape(typeof v==='number'?Number(v).toLocaleString('en-US',{maximumFractionDigits:2}):v==null?'—':String(v))}</strong></div>`).join('')}</div><button class="world-focus" id="worldFocus">FOCUS ON OBJECT ↗</button>`;
+ $('#worldFocus').addEventListener('click',()=>{const p=worldViewer.toIsoPoint(entity.position[0],entity.position[1],entity.position[2]);worldViewer.panX+=worldViewer.width*.51-p.x;worldViewer.panY+=worldViewer.height*.42-p.y});
+}
+function drawWorld(){
+ if(!sim||!worldViewer)return;
+ const scene=sim.visual_scene||null;
+ worldViewer.setScene(scene);
+ $('#worldLiveState').textContent=`SYNTHETIC / ${replay?'RECORDED REPLAY':'LIVE SIMULATOR'} / DAY ${String(sim.day).padStart(2,'0')}`;
+ $('#worldEntities').textContent=(scene?.entities?.length||0)+' entities';
+ $('#worldMeal').textContent=scene?.hud?.active_recipe||'Not served yet';
+ $('#worldBeads').textContent=(scene?.hud?.task_count||0)+' beads';
+}
+function stopWorldPlayback(){worldPlaying=false;clearTimeout(worldPlayTimer);worldPlayTimer=null;const btn=$('#worldPlay');if(btn)btn.textContent='▶ PLAY SIMULATION'}
+async function playWorld(){
+ if(worldPlaying){stopWorldPlayback();return}
+ worldPlaying=true;$('#worldPlay').textContent='Ⅱ PAUSE';
+ async function tick(){
+   if(!worldPlaying)return;
+   if(!sim||sim.day>=sim.horizon){stopWorldPlayback();return}
+   await advance(1);
+   if(worldPlaying)worldPlayTimer=setTimeout(tick,1500);
+ }
+ await tick();
+}
+function setupWorld(){
+ const canvas=$('#worldCanvas');if(!canvas||!window.PufferVis)return;
+ worldViewer=new window.PufferVis.Renderer(canvas,{onSelect:renderWorldInspector});
+ $('#cameraReset').addEventListener('click',()=>worldViewer.resetCamera());
+ $('#cameraMinus').addEventListener('click',()=>worldViewer.zoom(.87));
+ $('#cameraPlus').addEventListener('click',()=>worldViewer.zoom(1.15));
+ $('#worldPlay').addEventListener('click',playWorld);
+ $('#flowToggle').addEventListener('change',e=>worldViewer.setFlow(e.target.checked));
+ $$('[data-scene-layer]').forEach(b=>b.addEventListener('click',()=>{
+    const mode=b.dataset.sceneLayer;
+    worldViewer.setLayer(mode);
+    $$('[data-scene-layer]').forEach(x=>x.classList.toggle('active',x.dataset.sceneLayer===mode));
+ }));
+}
+
 async function init(){
+ setupWorld();
+ document.body.classList.add('world-active');
  $$('.nav-item').forEach(b=>b.addEventListener('click',()=>setView(b.dataset.view)));
  $('#action').addEventListener('change',e=>setAction(e.target.value));
  $('#step').addEventListener('click',()=>advance(1));$('#seven').addEventListener('click',()=>advance(7));
@@ -183,6 +229,6 @@ async function init(){
  $('#beadFilter').addEventListener('change',drawBeads);
  if(replay){sim=replayTimeline()[0];$('#engineMode').textContent='SYNTHETIC / REPLAY';toast('Offline replay: fixed trajectories. For live choices, run the local server.');}
  else{try{sim=await request('state');}catch(e){toast('Cannot connect to the local simulation API. Start python -m household.cli serve.');return}}
- render();let requested=location.hash.replace('#','');if(['overview','market','kitchen','beads','counterfactual','evidence'].includes(requested))setView(requested);
+ render();let requested=location.hash.replace('#','');if(['world','overview','market','kitchen','beads','counterfactual','evidence'].includes(requested))setView(requested);
 }
 document.addEventListener('DOMContentLoaded',init);
