@@ -125,3 +125,26 @@ plus added even-control reflection/equal-payout, no-repeat-payout, persistent-mo
 and evaluation-disable checks. The actual CPU runtime builds with ASan/UBSan and
 accepts mode=4. The native GPU runner now includes eight arms. CI runs both study
 modes with a smaller smoke budget; those CI runs are not the frozen experiment.
+
+## Specification oracle and mutation calibration
+
+`results/oracle.json` records 24,660 passing cases against a separately represented
+blocked-cell graph and reward specification. All nine faulty variants compiled
+and were rejected: missing obstacle, inverted horizontal actions, wrong goal,
+early timeout, doubled base reward, stale terminal flag, evaluation shaping leak,
+signed even feature, and schedule reset. The report preserves a failing input and
+expected/observed fields for each variant. Terminal coordinates are checked for
+membership in the declared reset starts, not equality to the displayed pre-reset
+coordinates in the reference row.
+
+BFS, Bellman identities, and an analytic geometric bound agree on optimal path
+lengths. For obstacle half-widths 1/2/3, training starts require 13/15/17 steps;
+held-out starts require 12/14/16. These are exact task optima, not learned-policy
+measurements. The prior learned route lengths therefore leave substantial room
+for improvement despite near-perfect success.
+
+The production environment was unchanged for this check. This establishes
+agreement on the tested cases and sensitivity to nine specified faults. It does
+not establish evaluator independence from its author, complete fault coverage,
+or any new learning gain. CI pins the specification but remains editable by the
+same repository writers.

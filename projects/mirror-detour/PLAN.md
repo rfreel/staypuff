@@ -53,3 +53,23 @@ percentile bootstrap interval across seeds. No equivalence or broad RL claim.
 Secondary outcomes: unshaped held-out success, route length, and route fraction.
 Test even reflection invariance, one-time payout, and evaluation disabling.
 Stop after this comparison and verification; do not search until a desired result.
+
+## Oracle prewalk: executable expectations independent of candidate code
+
+Freeze a declarative arena/action/reward specification before testing. Python
+will build legal transitions from explicit blocked-cell sets and solve shortest
+paths by BFS; an exhaustive Bellman check plus a geometric detour lower bound
+will calibrate those distances. A C probe will expose the actual header's
+transitions without using its collision predicate to filter the test inputs.
+
+Compare original rewards, terminal/reset semantics, route events, schedule
+boundaries, and shaping controls to the frozen specification. Calibrate failure
+detection with compiling single-change mutants: no walls, inverted horizontal
+actions, wrong goal, early timeout, doubled base reward, stale terminal, disabled
+evaluation guard, broken equal-route feature, and reset annealing clock. A compile
+failure is NOT a killed mutant. Require a specific oracle mismatch for each.
+
+Hash the specification and checker inputs into evidence and pin the specification
+hash in CI. This is computational independence, not independence of authorship
+or tamperproof governance: anyone controlling both code and CI can alter both.
+Do not infer general evaluator validity from this finite fault set.

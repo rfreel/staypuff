@@ -29,6 +29,10 @@ jobs:
         run: ./build.sh mirror_detour mirror_view --cpu --debug
       - name: Exhaustive C and deterministic learning checks
         run: bash projects/mirror-detour/verify.sh
+      - name: Independent specification oracle and mutation calibration
+        run: |
+          echo '979ad1fe6628bf7c468fd8a5dfea306ac3f09f2c8fc5628fc4d28fcb649be843  projects/mirror-detour/oracle-spec.json' | sha256sum -c -
+          python3 projects/mirror-detour/oracle.py --output /tmp/mirror-oracle.json
       - name: Native runtime untrained smoke (not a learning result)
         run: ./mirror_view --headless --eval_episodes=10 --env.evaluate=1
       - name: Validate experiment scripts and native plan

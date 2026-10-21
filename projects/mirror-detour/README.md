@@ -137,3 +137,30 @@ The even control matches event timing, maximum absolute reward magnitude, and
 schedule, but has a different signed mean reward. It tests whether asymmetric
 rewards are necessary here; it does not isolate every statistical property of
 the reward. Geometry remains unchanged. See EVIDENCE.md for the actual results.
+
+## Independently computed expected answers
+
+Run after installing the same Raylib headers used by the native build:
+
+```sh
+python3 projects/mirror-detour/oracle.py --output /tmp/mirror-oracle.json
+```
+
+The reference graph comes from explicit obstacle cells in `oracle-spec.json`,
+not the candidate collision function. Python computes legal transitions and BFS
+shortest paths, checks Bellman identities, and compares distances with an analytic
+geometric bound. A C adapter runs the actual environment on 24,660 specified
+cases. Nine deliberately faulty variants must compile and then fail the same
+oracle. Each rejection records a concrete counterexample; compilation failures
+never earn detection credit.
+
+CI pins the specification hash. Evidence records hashes of the specification,
+checker, adapter, and candidate. Change the task specification only as an explicit
+reviewed task change, not to make a candidate pass. Evidence files cannot be
+overwritten by the runner.
+
+This separates computations, not authorship or permissions. The same author can
+still modify the checker and CI. The tests cover selected state/configuration
+combinations, not all behavior, and mutation detection does not prove absence of
+other defects. Independent enforcement requires a reviewer or protected evaluator
+outside the candidate author's write access.
