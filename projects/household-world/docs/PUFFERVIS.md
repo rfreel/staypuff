@@ -90,3 +90,28 @@ Initialize `new PufferVis.Renderer(canvas)` and call `.setScene(scene)`. Entity 
 ## Tests and evidence
 
 `tests/test_scene.py` verifies purity, stable IDs, deterministic projections, linked entities, explicit provenance, read-only observation behavior, API consistency, generic scene compatibility, and asset existence. `native/test_ocean.c` exercises `puf_render` with a Raylib API stub. End-to-end screenshots were generated with headless Chromium using Playwright from the self-contained offline replay (the runtime's managed browser blocks direct URL navigation by policy). Mobile was tested at 390×844 CSS pixels and desktop at 1440×940; mobile horizontal overflow was absent after layout fixes.
+
+## Camera and lifecycle contract
+
+`camera.target` maps to the canvas anchor (50% width, 48% height), with the HUD
+below it. `camera.zoom` supplies the base scale; user zoom is limited to 0.6–2.1
+times that base. A changed scene ID or camera declaration resets user pan/zoom.
+Ordinary state revisions preserve user adjustments. Reset restores the declared
+camera. Hosts call `setActive(false)` when hiding a renderer and
+`setActive(true)` to resize and resume it. `dispose()` permanently releases the
+animation, resize observer, and registered input callbacks.
+
+Regression checks:
+
+```bash
+python -m pytest -q
+node --test tests/puffervis.test.cjs
+bash scripts/build_native.sh
+# With Playwright/Chromium installed and the local API running on port 8765:
+node tests/puffervis.browser.cjs
+```
+
+The installer copies the standalone native header into the destination `src/`;
+it does not depend on the Staypuff forwarding shim. Household member symbols
+use four columns and additional rows, expanding the dining floor as needed.
+Large households may require panning to inspect every member.

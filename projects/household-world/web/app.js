@@ -26,18 +26,18 @@ async function request(path,options={}){
 function replayTimeline(){return replay.scenarios[replayPolicy]?.timeline||[]}
 function setAction(value){const selected=Math.max(0,Math.min(7,parseInt(value,10)||0));$('#action').value=String(selected);if(replay&&selected!==replayPolicy){replayPolicy=selected;replayIndex=0;comparisonCache=null;sim=replayTimeline()[0];render()}}
 async function advance(n){
- if(busy)return;
- if(replay){const seq=replayTimeline();replayIndex=Math.min(seq.length-1,replayIndex+n);sim=seq[replayIndex];render();return}
+ if(busy)return false;
+ if(replay){const seq=replayTimeline();replayIndex=Math.min(seq.length-1,replayIndex+n);sim=seq[replayIndex];render();return true}
  busy=true;updateButtons();
- try{const action=Number($('#action').value);const payload=n===1?await request('step',{method:'POST',body:JSON.stringify({action})}):await request('run',{method:'POST',body:JSON.stringify({action,days:n})});sim=payload.state;comparisonCache=null;render()}
- catch(err){toast(err.message)}finally{busy=false;updateButtons()}
+ try{const action=Number($('#action').value);const payload=n===1?await request('step',{method:'POST',body:JSON.stringify({action})}):await request('run',{method:'POST',body:JSON.stringify({action,days:n})});sim=payload.state;comparisonCache=null;render();return true}
+ catch(err){toast(err.message);return false}finally{busy=false;updateButtons()}
 }
 async function resetWorld(){if(busy)return;
  if(replay){replayIndex=0;sim=replayTimeline()[0];comparisonCache=null;render();return}
  try{sim=await request('reset',{method:'POST',body:'{}'});comparisonCache=null;render()}catch(e){toast(e.message)}
 }
 function updateButtons(){const ended=sim&&sim.day>=sim.horizon;$('#step').disabled=busy||ended;$('#seven').disabled=busy||ended;$('#step').innerHTML=(replay?'NEXT REPLAY DAY':'ADVANCE ONE DAY')+' <b>→</b>';$('#engineMode').textContent=replay?'SYNTHETIC / REPLAY':'SYNTHETIC / LIVE'}
-function setView(name){ if(name!=='world')stopWorldPlayback();document.body.classList.toggle('world-active',name==='world');$$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));history.replaceState(null,'','#'+name);if(name==='counterfactual'&&!comparisonCache&&sim?.day<sim?.horizon&&!replay) compare();}
+function setView(name){ if(name!=='world')stopWorldPlayback();document.body.classList.toggle('world-active',name==='world');$$('.nav-item').forEach(n=>n.classList.toggle('active',n.dataset.view===name));$$('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));worldViewer?.setActive(name==='world');history.replaceState(null,'','#'+name);if(name==='counterfactual'&&!comparisonCache&&sim?.day<sim?.horizon&&!replay) compare();}
 function render(){if(!sim)return;
  $('#nowIndicator').textContent=`DAY ${String(sim.day).padStart(2,'0')} / ${String(sim.horizon).padStart(2,'0')}`;
  $('#seedIndicator').textContent='SEED '+String(sim.seed).padStart(4,'0');
@@ -194,7 +194,8 @@ async function playWorld(){
  async function tick(){
    if(!worldPlaying)return;
    if(!sim||sim.day>=sim.horizon){stopWorldPlayback();return}
-   await advance(1);
+   const succeeded=await advance(1);
+   if(!succeeded){stopWorldPlayback();return}
    if(worldPlaying)worldPlayTimer=setTimeout(tick,1500);
  }
  await tick();

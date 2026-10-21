@@ -28,20 +28,21 @@ class PufferVis {
     this.options=options;this.scene=null;this.scale=1;this.panX=0;this.panY=0;
     this.layer='all';this.flow=true;this.picking=[];this.selected=null;
     this.hovered=null;this.pointer=null;this.dragged=false;this.width=1;this.height=1;
+    this.active=options.active!==false;this.cameraTarget=[0,0,0];this.cameraZoom=1;this.cameraKey=null;
     this.disposed=false;this.time=0;this.phase=0;this.anim=0;
     this.reduced=typeof matchMedia==='function'&&matchMedia('(prefers-reduced-motion: reduce)').matches;
     this.handlers={};this.bind();this.resize();this.frame=0;this.loop=this.loop.bind(this);
-    this.frame=requestAnimationFrame(this.loop);
+    if(this.active)this.frame=requestAnimationFrame(this.loop);
   }
   bind(){
     const pointer=(event)=>{const r=this.canvas.getBoundingClientRect();return {x:event.clientX-r.left,y:event.clientY-r.top}};
     this.handlers.down=(e)=>{if(e.button!==0&&e.pointerType!=='touch')return;this.pointer={...pointer(e),panX:this.panX,panY:this.panY};this.dragged=false;this.canvas.setPointerCapture?.(e.pointerId)};
     this.handlers.move=(e)=>{const p=pointer(e);if(this.pointer){let dx=p.x-this.pointer.x,dy=p.y-this.pointer.y;if(Math.hypot(dx,dy)>5)this.dragged=true;this.panX=this.pointer.panX+dx;this.panY=this.pointer.panY+dy;this.hovered=null}else{this.hovered=this.pick(p.x,p.y)}};
     this.handlers.up=(e)=>{const p=pointer(e);if(!this.dragged){let found=this.pick(p.x,p.y);this.select(found?.id||null)}this.pointer=null;this.dragged=false;try{this.canvas.releasePointerCapture(e.pointerId)}catch(_){}};
-    this.handlers.wheel=e=>{e.preventDefault();const p=pointer(e),before=this.toIsoPoint(0,0,0);
-      const prev=this.scale;this.scale=clamp(this.scale*(e.deltaY<0?1.11:.9),.6,2.1);
-      this.panX+=(p.x-this.width*.48-this.panX)*(1-this.scale/prev);
-      this.panY+=(p.y-this.height*.23-this.panY)*(1-this.scale/prev);
+    this.handlers.wheel=e=>{e.preventDefault();const p=pointer(e);
+      const prev=this.scale;this.scale=clamp(this.scale*(e.deltaY<0?1.11:.9),.6*this.cameraZoom,2.1*this.cameraZoom);
+      this.panX+=(p.x-this.width*.5-this.panX)*(1-this.scale/prev);
+      this.panY+=(p.y-this.height*.48-this.panY)*(1-this.scale/prev);
     };
     this.handlers.key=e=>{if(e.key==='Escape'){this.select(null)}else if(e.key==='+'||e.key==='='){this.zoom(1.12)}else if(e.key==='-'){this.zoom(.89)}};
     this.canvas.addEventListener('pointerdown',this.handlers.down);
@@ -53,7 +54,7 @@ class PufferVis {
     this.handlers.resize=()=>this.resize();window.addEventListener('resize',this.handlers.resize);
     if(typeof ResizeObserver!=='undefined'){this.observer=new ResizeObserver(()=>this.resize());this.observer.observe(this.canvas)}
   }
-  dispose(){this.disposed=true;cancelAnimationFrame(this.frame);this.observer?.disconnect();window.removeEventListener('resize',this.handlers.resize);for(const type of ['pointerdown','pointermove','pointerup','pointercancel','wheel','keydown']){this.canvas.removeEventListener(type,this.handlers[type])}}
+  dispose(){this.disposed=true;cancelAnimationFrame(this.frame);this.observer?.disconnect();window.removeEventListener('resize',this.handlers.resize);for(const [type,key] of Object.entries({pointerdown:'down',pointermove:'move',pointerup:'up',pointercancel:'up',wheel:'wheel',keydown:'key'})){this.canvas.removeEventListener(type,this.handlers[key])}this.pointer=null;this.frame=0}
   resize(){const r=this.canvas.getBoundingClientRect();if(!r.width||!r.height)return;
     this.width=r.width;this.height=r.height;const dpr=Math.min(window.devicePixelRatio||1,2);
     let w=Math.max(1,Math.round(r.width*dpr)),h=Math.max(1,Math.round(r.height*dpr));
@@ -61,24 +62,37 @@ class PufferVis {
     this.ctx.setTransform(dpr,0,0,dpr,0,0);
   }
   setScene(scene){if(scene&&scene.schema!=='puffervis.scene.v1')throw Error('Unsupported PufferVis scene version');
+    const camera=scene?.camera;
+    const key=JSON.stringify([scene?.scene_id,camera]);
     this.scene=scene;this.time=0;this.phase=0;
+    if(key!==this.cameraKey){
+      this.cameraKey=key;this.cameraTarget=(camera?.target||[0,0,0]).map(v=>n(v));
+      this.cameraZoom=n(camera?.zoom,1)>0?n(camera?.zoom,1):1;this.resetCamera();
+    }
     if(this.selected&&!(scene?.entities||[]).some(x=>x.id===this.selected))this.select(null);
     this.onSelection();
   }
   setLayer(value){this.layer=value;}
   setFlow(value){this.flow=Boolean(value)}
-  zoom(f){this.scale=clamp(this.scale*f,.6,2.1)}
-  resetCamera(){this.scale=1;this.panX=0;this.panY=0}
+  zoom(f){this.scale=clamp(this.scale*f,.6*this.cameraZoom,2.1*this.cameraZoom)}
+  resetCamera(){this.scale=this.cameraZoom;this.panX=0;this.panY=0}
   select(id){this.selected=id;this.onSelection();}
   onSelection(){let e=this.scene?.entities.find(e=>e.id===this.selected)||null;
     if(typeof this.options.onSelect==='function')this.options.onSelect(e)}
   pick(x,y){for(let i=this.picking.length-1;i>=0;i--){let p=this.picking[i];if(Math.hypot((x-p.x)/p.rx,(y-p.y)/p.ry)<=1.15)return p.entity}return null}
-  loop(time){if(this.disposed)return;const ms=this.time?Math.min(50,time-this.time):0;this.time=time;
+  setActive(value){
+    if(this.disposed)return;
+    const active=Boolean(value);if(active===this.active)return;
+    this.active=active;this.time=0;
+    if(active){this.resize();this.frame=requestAnimationFrame(this.loop)}
+    else{cancelAnimationFrame(this.frame);this.frame=0;this.pointer=null;}
+  }
+  loop(time){if(this.disposed||!this.active)return;const ms=this.time?Math.min(50,time-this.time):0;this.time=time;
     if(!this.reduced)this.phase+=ms/1000;this.draw();this.frame=requestAnimationFrame(this.loop)}
   tileW(){return Math.min(66,Math.max(17,this.width/18.7))*this.scale}
-  toIsoPoint(x,y,z){const tw=this.tileW(),th=tw*.51;
-    return {x:this.width*.48+this.panX+(x-z)*tw*.5,
-            y:this.height*.23+this.panY+(x+z)*th*.5-y*tw*.8};
+  toIsoPoint(x,y,z){x-=this.cameraTarget[0];y-=this.cameraTarget[1];z-=this.cameraTarget[2];const tw=this.tileW(),th=tw*.51;
+    return {x:this.width*.5+this.panX+(x-z)*tw*.5,
+            y:this.height*.48+this.panY+(x+z)*th*.5-y*tw*.8};
   }
   poly(points,fill,stroke=null,lw=1){const c=this.ctx;c.beginPath();points.forEach((p,i)=>i?c.lineTo(p.x,p.y):c.moveTo(p.x,p.y));c.closePath();if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=lw;c.stroke()}}
   line(a,b,color,width=1){const c=this.ctx;c.beginPath();c.moveTo(a.x,a.y);c.lineTo(b.x,b.y);c.strokeStyle=color;c.lineWidth=width;c.stroke()}

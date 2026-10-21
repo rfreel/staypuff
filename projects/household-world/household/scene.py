@@ -95,8 +95,8 @@ def project_household_scene(state: dict[str, Any]) -> dict[str, Any]:
 
     # Profiles and meals are symbols for the planner, not tracked human locations.
     colors=['amber','rose','mint','blue']
-    for index,p in enumerate(people[:6]):
-        entities.append(_entity('person:'+p['id'],'person',3.85+index*1.35,10.5,
+    for index,p in enumerate(people):
+        entities.append(_entity('person:'+p['id'],'person',3.85+(index%4)*1.35,10.5+(index//4)*1.5,
                  label=p['id'].replace('_',' ').title(),variant=colors[index%4],
                  facts={'role':p.get('role'),'age_years':p.get('age_years'),
                         'dinner_reference_kcal':p.get('dinner_reference_kcal'),
@@ -126,11 +126,11 @@ def project_household_scene(state: dict[str, Any]) -> dict[str, Any]:
         'schema':SCHEMA, 'scene_id':'household.main', 'revision':day,
         'provenance':'synthetic_simulation', 'layout_provenance':'illustrative_not_physical',
         'camera':{'projection':'isometric','target':[8,0,5.8],'zoom':1},
-        'world':{'width':18,'depth':13,'tile_size':1},
+        'world':{'width':18,'depth':max(13,12+(max(0,len(people)-1)//4)*1.5),'tile_size':1},
         'zones':[
           {'id':'kitchen','label':'01 / KITCHEN','x':0,'z':0,'width':9.4,'depth':7.6,'material':'slate'},
           {'id':'market','label':'02 / MARKET','x':9.55,'z':0,'width':8.45,'depth':7.6,'material':'olive'},
-          {'id':'dining','label':'03 / TABLE','x':0,'z':7.8,'width':9.4,'depth':5.2,'material':'cream'},
+          {'id':'dining','label':'03 / TABLE','x':0,'z':7.8,'width':9.4,'depth':max(5.2,4.2+(max(0,len(people)-1)//4)*1.5),'material':'cream'},
           {'id':'ledger','label':'04 / LEDGER','x':9.55,'z':7.8,'width':8.45,'depth':5.2,'material':'umber'},
         ],
         'entities':entities,'connections':connections,
