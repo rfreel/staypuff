@@ -1,0 +1,15 @@
+{
+  "deployment_witnesses": 7680,
+  "development_witnesses": 9216,
+  "exact_reference_graphs": 96,
+  "controller_replays": 48,
+  "closed_form_reference_checks": 2,
+  "assignment_calls_per_arm": {
+    "base": 1572864,
+    "random": 1572864,
+    "gen1": 1572864,
+    "gen2": 1572864,
+    "frozen_meta": 1572864
+  },
+  "result": "PASS"
+}
