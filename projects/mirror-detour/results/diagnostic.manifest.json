@@ -1,0 +1,267 @@
+{
+  "backend": "CPU tabular Q-learning, not PuffeRL/PPO",
+  "alpha": 0.3,
+  "gamma": 0.99,
+  "epsilon": 0.2,
+  "total_steps": 2000000,
+  "discovery_seeds": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "confirmation_seeds": [
+    101,
+    102,
+    103,
+    104,
+    105,
+    106,
+    107,
+    108
+  ],
+  "selection": "mean discovery curve success, then shorter curve length",
+  "training_starts": [
+    4,
+    6
+  ],
+  "heldout_starts": [
+    3,
+    7
+  ],
+  "evaluation": "64 episodes, stochastic greedy ties, shaping disabled",
+  "source_sha256": {
+    "ocean/mirror_detour/mirror_detour.h": "346cd2e08429b16597974eccbda6e38792d1fb518f9501dfe3b7b385e3510112",
+    "config/mirror_detour.ini": "f2831b9f761209c52af30aaa624405cd35b0d0bd43a18bd59481a1310a107caa",
+    "projects/mirror-detour/diagnostic.c": "ceeb3bfc63cd40046fb903a393ddcb032260ad5f54ee2d97cc10d436479d55a2",
+    "projects/mirror-detour/run.py": "d1dc525dc92ba545511dfba3aa2890e67d36d676603805d15d1584059c5910ca",
+    "src/pufferenv.h": "3324a670791e2b3e46cbe7d10d9233d52fbc258e0d7e37d5b0c470e580de880c",
+    "src/ini.h": "cd4c83ba12ba40a7bef03ad810246cc0a5880f81e8566f6ac5a089b5c598859f"
+  },
+  "configs": [
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "persistent_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 1,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "persistent_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 1,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "persistent_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 1,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "persistent_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 1,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "persistent_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 1,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "persistent_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 1,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "persistent_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 1,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "persistent_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 1,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "potential",
+      "mode": 3,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "potential",
+      "mode": 3,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "potential",
+      "mode": 3,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "potential",
+      "mode": 3,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    }
+  ]
+}

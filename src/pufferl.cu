@@ -3032,6 +3032,14 @@ TrainResult run_train(Ini* ini, TrainContext* ctx) {
     }
 
     PuffeRL* pufferl = create_pufferl(ini, ctx);
+    // Weights-only initialization: optimizer, RNG, envs and counters stay fresh.
+    char load_buf[4096];
+    const char* load_path = puf_checkpoint_path_key(ini,
+        "load_model_path", load_buf, sizeof(load_buf));
+    if (load_path) {
+        pufferl_load_policy(pufferl, 0, load_path);
+    }
+    // Async rollout_start copies the loaded primary weights to the actor.
     Selfplay selfplay = {0};
     if (use_selfplay) {
         char initial_checkpoint[4096];

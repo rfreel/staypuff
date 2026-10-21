@@ -1,0 +1,46 @@
+name: Mirror detour native verification
+on:
+  pull_request:
+    paths:
+      - 'ocean/mirror_detour/**'
+      - 'projects/mirror-detour/**'
+      - 'config/mirror_detour.ini'
+      - 'src/pufferenv.h'
+      - 'src/ini.h'
+      - 'src/puffercpu.c'
+      - 'src/pufferl.cu'
+      - '.github/workflows/mirror-detour.yml'
+  push:
+    paths:
+      - 'ocean/mirror_detour/**'
+      - 'projects/mirror-detour/**'
+      - 'config/mirror_detour.ini'
+      - '.github/workflows/mirror-detour.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y clang libomp-dev libgl1-mesa-dev
+      - name: Build actual CPU runtime with sanitizers
+        run: ./build.sh mirror_detour mirror_view --cpu --debug
+      - name: Exhaustive C and deterministic learning checks
+        run: bash projects/mirror-detour/verify.sh
+      - name: Independent specification oracle and mutation calibration
+        run: |
+          echo '979ad1fe6628bf7c468fd8a5dfea306ac3f09f2c8fc5628fc4d28fcb649be843  projects/mirror-detour/oracle-spec.json' | sha256sum -c -
+          python3 projects/mirror-detour/oracle.py --output /tmp/mirror-oracle.json
+      - name: Native runtime untrained smoke (not a learning result)
+        run: ./mirror_view --headless --eval_episodes=10 --env.evaluate=1
+      - name: Runner regressions (CUDA initialization requires separate GPU hardware)
+        run: MIRROR_CPU_BINARY=./mirror_view python3 projects/mirror-detour/test_runners.py -v
+      - name: Validate experiment scripts and native plan
+        run: |
+          python3 -m py_compile projects/mirror-detour/run.py projects/mirror-detour/native.py
+          python3 projects/mirror-detour/native.py > /tmp/mirror-native-plan.json
+          python3 projects/mirror-detour/run.py --binary /tmp/staypuff-mirror-detour/diagnostic --steps 20000 --output /tmp/mirror-ci.json
+          python3 projects/mirror-detour/run.py --study even-control --binary /tmp/staypuff-mirror-detour/diagnostic --steps 20000 --output /tmp/mirror-even-ci.json

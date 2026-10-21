@@ -1,0 +1,213 @@
+{
+  "backend": "CPU tabular Q-learning, not PuffeRL/PPO",
+  "alpha": 0.3,
+  "gamma": 0.99,
+  "epsilon": 0.2,
+  "total_steps": 2000000,
+  "discovery_seeds": [
+    201,
+    202,
+    203,
+    204
+  ],
+  "confirmation_seeds": [
+    301,
+    302,
+    303,
+    304,
+    305,
+    306,
+    307,
+    308,
+    309,
+    310,
+    311,
+    312,
+    313,
+    314,
+    315,
+    316
+  ],
+  "study": "even-control",
+  "primary_contrast": "mean odd signs minus even curve success",
+  "selection": "mean discovery curve success, then shorter curve length",
+  "training_starts": [
+    4,
+    6
+  ],
+  "heldout_starts": [
+    3,
+    7
+  ],
+  "evaluation": "64 episodes, stochastic greedy ties, shaping disabled",
+  "source_sha256": {
+    "ocean/mirror_detour/mirror_detour.h": "fbe76a491318af8550161175e4dba3a3c4ac8eef6ef9611000ba8f8d579f4652",
+    "config/mirror_detour.ini": "f2831b9f761209c52af30aaa624405cd35b0d0bd43a18bd59481a1310a107caa",
+    "projects/mirror-detour/diagnostic.c": "ceeb3bfc63cd40046fb903a393ddcb032260ad5f54ee2d97cc10d436479d55a2",
+    "projects/mirror-detour/run.py": "f45f4572fe13f6187efbd37bcfee22eba8aa378e4248f0fb08dd019ae63ed8e4",
+    "src/pufferenv.h": "3324a670791e2b3e46cbe7d10d9233d52fbc258e0d7e37d5b0c470e580de880c",
+    "src/ini.h": "cd4c83ba12ba40a7bef03ad810246cc0a5880f81e8566f6ac5a089b5c598859f"
+  },
+  "configs": [
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "baseline",
+      "mode": 0,
+      "sign": 0,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_plus",
+      "mode": 1,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "odd_minus",
+      "mode": 1,
+      "sign": -1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "hash",
+      "mode": 2,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "even",
+      "mode": 4,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "even",
+      "mode": 4,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.05,
+      "anneal_steps": 1000000
+    },
+    {
+      "family": "even",
+      "mode": 4,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 200000
+    },
+    {
+      "family": "even",
+      "mode": 4,
+      "sign": 1,
+      "schedule": 0,
+      "strength": 0.2,
+      "anneal_steps": 1000000
+    }
+  ]
+}
