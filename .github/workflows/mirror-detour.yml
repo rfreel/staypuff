@@ -36,3 +36,4 @@ jobs:
           python3 -m py_compile projects/mirror-detour/run.py projects/mirror-detour/native.py
           python3 projects/mirror-detour/native.py > /tmp/mirror-native-plan.json
           python3 projects/mirror-detour/run.py --binary /tmp/staypuff-mirror-detour/diagnostic --steps 20000 --output /tmp/mirror-ci.json
+          python3 projects/mirror-detour/run.py --study even-control --binary /tmp/staypuff-mirror-detour/diagnostic --steps 20000 --output /tmp/mirror-even-ci.json

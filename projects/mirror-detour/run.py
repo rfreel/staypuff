@@ -3,6 +3,7 @@
 import argparse
 import hashlib
 import json
+import random
 from pathlib import Path
 import statistics
 import subprocess
@@ -18,17 +19,30 @@ def digest(path):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--study', choices=('original', 'even-control'), default='original')
     parser.add_argument('--binary', type=Path, required=True)
     parser.add_argument('--steps', type=int, default=2_000_000)
-    parser.add_argument('--output', type=Path, default=PROJECT / 'results' / 'diagnostic.json')
+    parser.add_argument('--output', type=Path, default=None)
     args = parser.parse_args()
     assert args.steps >= 100
+    if args.output is None:
+        name = 'diagnostic.json' if args.study == 'original' else 'even-control.json'
+        args.output = PROJECT / 'results' / name
+    if args.output.exists():
+        raise SystemExit(f'Refusing to overwrite evidence: {args.output}')
+    discovery_seeds = [1, 2, 3, 4]
+    confirmation_seeds = list(range(101, 109))
     binary = args.binary.resolve()
     configs = []
     families = [('baseline', 0, 0, 0), ('odd_plus', 1, 1, 0),
                 ('odd_minus', 1, -1, 0), ('persistent_plus', 1, 1, 1),
                 ('persistent_minus', 1, -1, 1), ('hash', 2, 1, 0),
                 ('potential', 3, 1, 0)]
+    if args.study == 'even-control':
+        families = [('baseline', 0, 0, 0), ('odd_plus', 1, 1, 0),
+                    ('odd_minus', 1, -1, 0), ('hash', 2, 1, 0), ('even', 4, 1, 0)]
+        discovery_seeds = list(range(201, 205))
+        confirmation_seeds = list(range(301, 317))
     # Every family gets four discovery candidates. Baseline duplicates are
     # intentional: same run count/step budget, no extra tuning for shaped arms.
     for family, mode, sign, schedule in families:
@@ -42,7 +56,10 @@ def main():
                     'src/pufferenv.h', 'src/ini.h']
     manifest = dict(backend='CPU tabular Q-learning, not PuffeRL/PPO',
                     alpha=0.3, gamma=0.99, epsilon=0.2, total_steps=args.steps,
-                    discovery_seeds=[1, 2, 3, 4], confirmation_seeds=list(range(101, 109)),
+                    discovery_seeds=discovery_seeds, confirmation_seeds=confirmation_seeds,
+                    study=args.study,
+                    primary_contrast="mean odd signs minus even curve success"
+                    if args.study == "even-control" else None,
                     selection='mean discovery curve success, then shorter curve length',
                     training_starts=[4, 6], heldout_starts=[3, 7],
                     evaluation='64 episodes, stochastic greedy ties, shaping disabled',
@@ -86,11 +103,24 @@ def main():
             'left_mean': statistics.mean(r['heldout']['left'] for r in batch),
             'right_mean': statistics.mean(r['heldout']['right'] for r in batch),
         }
-    output = dict(manifest=manifest, selected=selected, summary=summary, runs=runs,
+    contrast = None
+    if args.study == 'even-control':
+        curves = {(r['family'], r['seed']): statistics.mean(p['success'] for p in r['curve'])
+                  for r in runs if r['phase'] == 'confirmation'}
+        deltas = [(curves['odd_plus', seed] + curves['odd_minus', seed])/2
+                  - curves['even', seed] for seed in confirmation_seeds]
+        rng = random.Random(731)
+        bootstrap = sorted(statistics.mean(rng.choices(deltas, k=len(deltas)))
+                           for _ in range(20000))
+        contrast = dict(odd_minus_even_mean=statistics.mean(deltas), by_seed=deltas,
+                        percentile_interval_95=[bootstrap[500], bootstrap[19499]],
+                        method='paired seed bootstrap, 20000 resamples, RNG seed 731',
+                        caveat='conditional on discovery-selected settings; not an equivalence test')
+    output = dict(primary_contrast=contrast, manifest=manifest, selected=selected, summary=summary, runs=runs,
                   total_wall_seconds=time.monotonic() - started,
                   limitation='Diagnostic only; no PPO runs, causal amplification claim, or broad transfer.')
     args.output.write_text(json.dumps(output, indent=2) + '\n')
-    print(json.dumps({'runs': len(runs), 'summary': summary,
+    print(json.dumps({'runs': len(runs), 'primary_contrast': contrast, 'summary': summary,
                       'total_wall_seconds': output['total_wall_seconds']}, indent=2))
 
 

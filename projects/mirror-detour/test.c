@@ -85,6 +85,24 @@ int main(void) {
         puf_step(&a);
         assert(a.last_bonus == 0); // Cannot farm the event.
     }
+    // Equal-route control: same positive bonus under reflection, once only.
+    setup(&a, ab, 4, 1);
+    setup(&b, bb, 4, 1);
+    a.x = 2;
+    b.x = 8;
+    a.y = b.y = 3;
+    ab[OBS_SIZE] = bb[OBS_SIZE] = 2;
+    puf_step(&a);
+    puf_step(&b);
+    assert(a.last_bonus == 0.2f && b.last_bonus == 0.2f);
+    assert(a.route == -1 && b.route == 1);
+    ab[OBS_SIZE] = bb[OBS_SIZE] = 3;
+    puf_step(&a);
+    puf_step(&b);
+    ab[OBS_SIZE] = bb[OBS_SIZE] = 2;
+    puf_step(&a);
+    puf_step(&b);
+    assert(a.last_bonus == 0 && b.last_bonus == 0);
     // Baseline parity across mode=0, sign=0, strength=0, and evaluation.
     for (int disabled = 0; disabled < 4; disabled++) {
         setup(&a, ab, 0, 0);
@@ -129,7 +147,7 @@ int main(void) {
     puf_step(&a);
     assert(a.last_bonus == 0 && isfinite(ab[OBS_SIZE + 1]));
     // Persistent control remains active; evaluation disables every mode.
-    for (int mode = 1; mode <= 3; mode++) {
+    for (int mode = 1; mode <= 4; mode++) {
         setup(&a, ab, mode, 1);
         a.schedule = 1;
         a.steps = 10000;

@@ -64,7 +64,7 @@ void puf_init(Env* env, Dict* kwargs) {
     assert(offset >= 0 && offset <= 1e12 && offset == floor(offset));
     env->anneal_steps = anneal;
     env->steps = offset;
-    assert(env->mode >= 0 && env->mode <= 3);
+    assert(env->mode >= 0 && env->mode <= 4);
     assert(env->sign >= -1 && env->sign <= 1);
     assert(isfinite(env->strength) && env->strength >= 0);
     assert(env->gamma >= 0 && env->gamma <= 1);
@@ -120,6 +120,8 @@ void puf_step(Env* env) {
             key = (key ^ 0x9e3779b9u)*0x85ebca6bu;
             key ^= key >> 16;
             feature = (key & 1u) ? 1 : -1;
+        } else if (env->mode == 4) {
+            feature = fabsf(feature);
         } else if (env->mode == 3) {
             float before = -(abs(old_x - 5) + old_y)/20.0f;
             float after = terminal ? 0 : -(abs(env->x - 5) + env->y)/20.0f;

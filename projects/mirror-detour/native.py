@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Preview or execute seven fixed native PuffeRL arms. No diagnostic-to-PPO claims."""
+"""Preview or execute eight fixed native PuffeRL arms. No diagnostic-to-PPO claims."""
 import argparse
 import json
 from pathlib import Path
@@ -23,7 +23,7 @@ def main():
     anneal = int(args.steps / 1024 * args.anneal_fraction)
     arms = [('baseline', 0, 0, 0), ('odd_plus', 1, 1, 0), ('odd_minus', 1, -1, 0),
             ('persistent_plus', 1, 1, 1), ('persistent_minus', 1, -1, 1),
-            ('hash', 2, 1, 0), ('potential', 3, 1, 0)]
+            ('hash', 2, 1, 0), ('potential', 3, 1, 0), ('even', 4, 1, 0)]
     output = args.output.resolve()
     common = [f'--base.seed={args.seed}', '--base.async=0',
               '--vec.total_agents=1024', '--policy.hidden_size=64', '--policy.num_layers=2',

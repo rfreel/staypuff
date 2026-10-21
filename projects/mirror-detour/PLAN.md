@@ -35,3 +35,21 @@ A directional preference is not task improvement. Compare unshaped held-out
 success and speed after bonus removal. A diagnostic result cannot establish
 PPO transfer, broad generalization, or nonlinear amplification. Equal tuning
 budgets and wall-clock costs are required for stronger claims.
+
+## Follow-up prewalk: equal-route progress control
+
+The first matrix cannot distinguish odd structure from subgoal reward. Add mode=4,
+abs(route_event), so either first crossing earns the same bonus. It matches the
+odd condition's event, maximum absolute magnitude, and schedule, but not signed
+reward mean. That remaining difference must be reported, not called isolated
+causality. Keep the old experiment untouched.
+
+Freeze five families (baseline, odd +, odd -, hash, even), four magnitude/duration
+candidates each, discovery seeds 201..204, confirmation seeds 301..316, and two
+million transitions per run. Select using the same training-start curve metric.
+Primary contrast: average of the two odd-sign curve-success scores minus even,
+paired by confirmation seed. Report mean delta and a fixed-seed 20,000-resample
+percentile bootstrap interval across seeds. No equivalence or broad RL claim.
+Secondary outcomes: unshaped held-out success, route length, and route fraction.
+Test even reflection invariance, one-time payout, and evaluation disabling.
+Stop after this comparison and verification; do not search until a desired result.

@@ -21,6 +21,7 @@ bonus: repeated wall-pushing and route loops cannot farm the shaping event.
 | `mode=1` | Odd route-choice feature |
 | `mode=2` | Fixed hashed state/action perturbation at the same event |
 | `mode=3` | Goal Manhattan-distance potential difference |
+| `mode=4` | Equal positive bonus for either first route crossing |
 | `sign=-1,0,1` | Reverse, disable, or preserve feature |
 | `schedule=0,1` | Linearly decaying or persistent coefficient |
 | `strength` | Nonnegative shaping scale |
@@ -61,7 +62,7 @@ CI uses the normal sanitizer settings.
 ## Executed CPU diagnostic
 
 ```sh
-python3 projects/mirror-detour/run.py --binary /tmp/staypuff-mirror-detour/diagnostic
+python3 projects/mirror-detour/run.py --binary /tmp/staypuff-mirror-detour/diagnostic --output /tmp/mirror-original.json
 ```
 
 This is tabular Q-learning over the actual C environment, NOT PuffeRL/PPO.
@@ -94,7 +95,7 @@ python3 projects/mirror-detour/native.py
 python3 projects/mirror-detour/native.py --execute --output logs/mirror-native-seed101
 ```
 
-The first Python command prints the seven-arm plan without training. Execution
+The first Python command prints the eight-arm plan without training. Execution
 uses isolated checkpoint/log paths, verifies that evaluation loaded trained
 weights, evaluates both start sets with shaping disabled, and records raw logs.
 Use a fresh output directory and repeat with different `--seed` values. Use
@@ -118,3 +119,21 @@ Orientation selection alone is expected. An improvement needs original-task
 results after removal, comparisons to both signs and simpler shaping controls,
 new seeds, and comparable tuning/compute budgets. A successful toy diagnostic
 cannot establish PPO transfer or broad RL usefulness.
+
+## Equal-route follow-up
+
+```sh
+python3 projects/mirror-detour/run.py --study even-control --binary /tmp/staypuff-mirror-detour/diagnostic --output /tmp/mirror-even.json
+```
+
+Existing evidence files are never overwritten. The original study is retained
+with its original source hashes and is reproducible at commit
+38c166955545c5da9c1320581138213cdf94b094. The follow-up compares baseline, both
+odd signs, the hash perturbation, and an equal-route event reward. It uses new
+discovery seeds 201..204 and confirmation seeds 301..316. The primary contrast
+and bootstrap procedure were specified in PLAN.md before running.
+
+The even control matches event timing, maximum absolute reward magnitude, and
+schedule, but has a different signed mean reward. It tests whether asymmetric
+rewards are necessary here; it does not isolate every statistical property of
+the reward. Geometry remains unchanged. See EVIDENCE.md for the actual results.
