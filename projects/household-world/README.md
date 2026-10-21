@@ -45,6 +45,16 @@ python -m household.cli evaluate --days 30 --seeds 12 \
 
 The provided checkpoint was trained locally. It **does not demonstrate improvement** over the low-waste scripted baseline. See `artifacts/final-heldout.json` and [docs/EVIDENCE.md](docs/EVIDENCE.md).
 
+## PufferVis game graphics (v1)
+
+![Live-world isometric browser rendering](artifacts/puffervis-desktop-verified.png)
+
+**The primary screen is now a playable-state viewer**, not just a metrics dashboard. The browser draws an isometric household kitchen, pantry, three synthetic members, competing grocery stores, a checkout, and an accounting board. Graphics reflect the simulator's current authoritative snapshot: daily prices, inventory quantities, meal and cooking state, budget, and Beads count. Drag the view to pan, scroll or tap +/- to zoom, select an entity to inspect its actual simulation facts, hide layers, and press Play to advance the simulation one day at a time. The existing policy dropdown determines which of eight scripted decision rules to run; playback does not train a policy.
+
+All graphic primitives are outside RL transitions. `puffervis.scene.v1` is a reusable scene schema with two backends: a zero-dependency browser canvas renderer and portable Raylib isometric helpers for CPU Ocean demos. A second non-household warehouse scene fixture validates the general representation. The native C environment remains reduced-fidelity. See [docs/PUFFERVIS.md](docs/PUFFERVIS.md) for the protocol and boundaries.
+
+For fully offline viewing, regenerate `artifacts/puffervis-preview.html` using `household.replay.build_preview`; it contains the recorded synthetic state trajectories plus the entire renderer.
+
 ## What runs
 
 | System | Implemented behavior | Fidelity boundary |

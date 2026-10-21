@@ -1,0 +1,35 @@
+{
+  "desktop": {
+    "viewport": [
+      1440,
+      940
+    ],
+    "horizontal_overflow": false,
+    "entities_after_step": "24 entities",
+    "day": 2,
+    "canvas_width": 895,
+    "page_errors": [],
+    "camera_and_inspection": "pass",
+    "play_pause": "pass",
+    "screenshot": "artifacts/puffervis-desktop-verified.png"
+  },
+  "mobile": {
+    "viewport": [
+      390,
+      844
+    ],
+    "horizontal_overflow": false,
+    "entities_after_step": "24 entities",
+    "day": 2,
+    "canvas_width": 354,
+    "page_errors": [],
+    "camera_and_inspection": "pass",
+    "play_pause": "pass",
+    "screenshot": "artifacts/puffervis-mobile-verified.png"
+  },
+  "generic_warehouse": {
+    "scene_id": "warehouse.example",
+    "entities": 3,
+    "rendered": true
+  }
+}
