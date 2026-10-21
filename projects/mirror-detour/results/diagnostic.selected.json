@@ -1,0 +1,58 @@
+{
+  "baseline": {
+    "family": "baseline",
+    "mode": 0,
+    "sign": 0,
+    "schedule": 0,
+    "strength": 0.05,
+    "anneal_steps": 200000
+  },
+  "odd_plus": {
+    "family": "odd_plus",
+    "mode": 1,
+    "sign": 1,
+    "schedule": 0,
+    "strength": 0.05,
+    "anneal_steps": 1000000
+  },
+  "odd_minus": {
+    "family": "odd_minus",
+    "mode": 1,
+    "sign": -1,
+    "schedule": 0,
+    "strength": 0.05,
+    "anneal_steps": 1000000
+  },
+  "persistent_plus": {
+    "family": "persistent_plus",
+    "mode": 1,
+    "sign": 1,
+    "schedule": 1,
+    "strength": 0.05,
+    "anneal_steps": 200000
+  },
+  "persistent_minus": {
+    "family": "persistent_minus",
+    "mode": 1,
+    "sign": -1,
+    "schedule": 1,
+    "strength": 0.2,
+    "anneal_steps": 200000
+  },
+  "hash": {
+    "family": "hash",
+    "mode": 2,
+    "sign": 1,
+    "schedule": 0,
+    "strength": 0.2,
+    "anneal_steps": 200000
+  },
+  "potential": {
+    "family": "potential",
+    "mode": 3,
+    "sign": 1,
+    "schedule": 0,
+    "strength": 0.05,
+    "anneal_steps": 200000
+  }
+}
