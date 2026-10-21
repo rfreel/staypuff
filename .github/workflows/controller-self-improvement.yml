@@ -1,0 +1,25 @@
+name: Audit controller self-improvement evidence
+on:
+  pull_request:
+    paths:
+      - 'projects/controller-self-improvement/**'
+      - '.github/workflows/controller-self-improvement.yml'
+  push:
+    paths:
+      - 'projects/controller-self-improvement/**'
+      - '.github/workflows/controller-self-improvement.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install numpy==2.3.5
+      - name: Verify frozen experiment evidence
+        run: python projects/controller-self-improvement/audit.py projects/controller-self-improvement/results

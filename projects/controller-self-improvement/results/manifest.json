@@ -1,0 +1,21 @@
+{
+  "hashes": {
+    "PROTOCOL.md": "07cf8c052c8a9afb63c8611e06f38161e3c99d83a42134e77485855984329903",
+    "controller.py": "c7f9adf3f7053ea0c7df142166acd2d597de911d1a46183022726652b877efb7",
+    "experiment.py": "2d6fb58c8c783bc61500507f6ae6982c0bce33ac68dd857bd6eaefb6d981d328"
+  },
+  "base_commit": "a68f4992b70c81e0c13fe76bdf1149fb4305dc93",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "numpy": "2.3.5",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "chains": 16,
+  "tasks": 96,
+  "budgets": {
+    "base": 1024,
+    "random": 1024,
+    "gen1": 768,
+    "gen2": 512,
+    "frozen_meta": 512
+  },
+  "development_seed": 31415926
+}
