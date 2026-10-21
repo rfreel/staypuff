@@ -70,10 +70,10 @@ void puf_reset(Env* env) {
     hh_observe(env);
 }
 void puf_step(Env* env) {
-    if (env->day>=HOUSEHOLD_DAYS) {
-        env->agents[0].terminals[0]=1.0f;
-        return;
-    }
+    // The previous transition's terminal flag is consumed by the policy
+    // before this call. Clear it only when beginning the next step.
+    env->agents[0].terminals[0]=0.0f;
+    if (env->day>=HOUSEHOLD_DAYS) puf_reset(env);
     int day=env->day;
     int act=(int)env->agents[0].actions[0];
     if (act<0 || act>7) act=0;
@@ -120,6 +120,10 @@ void puf_step(Env* env) {
         env->log.served+=env->served;
         env->log.waste+=env->expired;
         env->log.n++;
+        // Autoreset for successive CPU headless evaluation episodes.
+        // puf_reset preserves the aggregate log and the terminal flag,
+        // exposing the next episode's initial observation to the policy.
+        puf_reset(env);
     }
     hh_observe(env);
 }
