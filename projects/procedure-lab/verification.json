@@ -1,0 +1,37 @@
+{
+  "base_commit": "69e27dacd9a7930d768b10ea2fda1f386bb1ff40",
+  "compiler": "gcc (Ubuntu 13.3.0-6ubuntu2~24.04) 13.3.0",
+  "checks": [
+    "312480 program/case checks against independent histogram oracle",
+    "80000 paired deterministic replay steps",
+    "128000 interleaved steps across 128 separate instances with buffer guards",
+    "12000 random/scripted diagnostic episodes",
+    "ASan/UBSan C output equals optimized C++ output",
+    "Native CPU runtime: 10 completed episodes, 960 steps, untrained policy"
+  ],
+  "runtime_smoke": {
+    "episodes": 10,
+    "steps": 960,
+    "perf": 0.115625,
+    "score": -0.192,
+    "untrained": true
+  },
+  "local_build_notes": [
+    "Clang unavailable: GCC adapter omitted three Clang-only diagnostic options",
+    "Linked installed libGL.so.1 via temporary libGL.so symlink",
+    "ASAN_OPTIONS=detect_leaks=0 because local proc access blocks LeakSanitizer",
+    "No repository build script changes; CI uses normal Clang build and default sanitizers"
+  ],
+  "not_run": [
+    "GPU compilation",
+    "PPO training",
+    "Learned-policy transfer evaluation"
+  ],
+  "sha256": {
+    "ocean/procedure_lab/procedure_lab.h": "13690b2300496ccb05978c468b9b7160b72a3e6fa159bf278cbff38183ca8f4e",
+    "config/procedure_lab.ini": "af7aee8895ebe8c584e827b1a265a1b0c14603ec98d4ee3b8af4eb28069ac674",
+    "projects/procedure-lab/test.c": "fb39a9e77f04c187884af26ec06151a6ecb80c8d0b915fd700f59edb7b4ed03d",
+    "projects/procedure-lab/verify.sh": "96fd4cfdedadc7bdee1a17da28cb49b9f7fab46e4d543e83392195512f8cddb4",
+    "projects/procedure-lab/results.json": "edfeb434d4e2977627ceb7b996caed94b519d622fcce38f8f5e0de54f295f6d4"
+  }
+}

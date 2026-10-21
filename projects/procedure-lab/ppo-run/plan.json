@@ -1,0 +1,27 @@
+{
+  "algorithm": "clipped PPO with GAE",
+  "device": "cpu",
+  "seed": 7,
+  "steps": 1048576,
+  "environments": 256,
+  "horizon": 64,
+  "epochs": 4,
+  "minibatch": 2048,
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "clip": 0.2,
+  "entropy": 0.01,
+  "value_weight": 0.5,
+  "max_grad_norm": 0.5,
+  "learning_rate": 0.0003,
+  "anneal_learning_rate": true,
+  "evaluation_seed": 910007,
+  "eval_episodes": 1000,
+  "selection": "final checkpoint only; no tuning on evaluation",
+  "torch_version": "2.14.1+cpu",
+  "source_sha256": {
+    "ocean/procedure_lab/procedure_lab.h": "13690b2300496ccb05978c468b9b7160b72a3e6fa159bf278cbff38183ca8f4e",
+    "projects/procedure-lab/ppo_bridge.c": "bfad1e362164ab8ef208646cb9f93eaeb518294aa5954b685c35784c38adefda",
+    "projects/procedure-lab/ppo.py": "6ef11700bdf0b019cf275d74372436eca4ddc141dc61990fad8f6fc9f6ab9914"
+  }
+}

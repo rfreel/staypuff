@@ -1,0 +1,154 @@
+{
+  "before": [
+    {
+      "family": 0,
+      "evaluate": 0,
+      "episodes": 1000,
+      "accuracy": 0.10313281416893005,
+      "reward": -0.37413835525512695,
+      "task_gain": 1.5630350389983505e-05,
+      "invalid": 13.234999656677246,
+      "retained": 0.007000000216066837,
+      "rounds": 0.9169999957084656,
+      "all_rounds": 0.114
+    },
+    {
+      "family": 0,
+      "evaluate": 1,
+      "episodes": 1000,
+      "accuracy": 0.07896354794502258,
+      "reward": -0.3584339916706085,
+      "task_gain": 2.7539208691251815e-09,
+      "invalid": 12.70300006866455,
+      "retained": 0.009999999776482582,
+      "rounds": 0.8830000162124634,
+      "all_rounds": 0.116
+    },
+    {
+      "family": 1,
+      "evaluate": 0,
+      "episodes": 1000,
+      "accuracy": 0.09747134894132614,
+      "reward": -0.3433299660682678,
+      "task_gain": 2.604350447654724e-05,
+      "invalid": 11.897000312805176,
+      "retained": 0.02199999988079071,
+      "rounds": 0.9010000228881836,
+      "all_rounds": 0.115
+    },
+    {
+      "family": 1,
+      "evaluate": 1,
+      "episodes": 1000,
+      "accuracy": 0.08450781553983688,
+      "reward": -0.3473549783229828,
+      "task_gain": 1.302099281019764e-05,
+      "invalid": 12.041999816894531,
+      "retained": 0.028999999165534973,
+      "rounds": 0.9070000052452087,
+      "all_rounds": 0.114
+    },
+    {
+      "family": 2,
+      "evaluate": 0,
+      "episodes": 1000,
+      "accuracy": 0.08485676348209381,
+      "reward": -0.3541419804096222,
+      "task_gain": 2.438202528765032e-09,
+      "invalid": 12.286999702453613,
+      "retained": 0.029999999329447746,
+      "rounds": 0.8970000147819519,
+      "all_rounds": 0.104
+    },
+    {
+      "family": 2,
+      "evaluate": 1,
+      "episodes": 1000,
+      "accuracy": 0.05389583483338356,
+      "reward": -0.35809123516082764,
+      "task_gain": -3.1246145226759836e-05,
+      "invalid": 12.447999954223633,
+      "retained": 0.029999999329447746,
+      "rounds": 0.8619999885559082,
+      "all_rounds": 0.11
+    }
+  ],
+  "after": [
+    {
+      "family": 0,
+      "evaluate": 0,
+      "episodes": 1000,
+      "accuracy": 0.0,
+      "reward": -0.0020000003278255463,
+      "task_gain": 0.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "all_rounds": 0.0
+    },
+    {
+      "family": 0,
+      "evaluate": 1,
+      "episodes": 1000,
+      "accuracy": 0.0,
+      "reward": -0.0020000003278255463,
+      "task_gain": 0.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "all_rounds": 0.0
+    },
+    {
+      "family": 1,
+      "evaluate": 0,
+      "episodes": 1000,
+      "accuracy": 0.0,
+      "reward": -0.0020000003278255463,
+      "task_gain": 0.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "all_rounds": 0.0
+    },
+    {
+      "family": 1,
+      "evaluate": 1,
+      "episodes": 1000,
+      "accuracy": 0.0,
+      "reward": -0.0020000003278255463,
+      "task_gain": 0.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "all_rounds": 0.0
+    },
+    {
+      "family": 2,
+      "evaluate": 0,
+      "episodes": 1000,
+      "accuracy": 0.0,
+      "reward": -0.0020000003278255463,
+      "task_gain": 0.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "all_rounds": 0.0
+    },
+    {
+      "family": 2,
+      "evaluate": 1,
+      "episodes": 1000,
+      "accuracy": 0.0,
+      "reward": -0.0020000003278255463,
+      "task_gain": 0.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "all_rounds": 0.0
+    }
+  ],
+  "training_seconds": 29.278662235999946,
+  "weight_change_l2": 3.894043445587158,
+  "updates": 64,
+  "transitions": 1048576
+}
