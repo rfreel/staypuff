@@ -28,8 +28,12 @@ def main():
     if args.output is None:
         name = 'diagnostic.json' if args.study == 'original' else 'even-control.json'
         args.output = PROJECT / 'results' / name
-    if args.output.exists():
-        raise SystemExit(f'Refusing to overwrite evidence: {args.output}')
+    manifest_path = args.output.with_suffix('.manifest.json')
+    selected_path = args.output.with_suffix('.selected.json')
+    paths = (args.output, manifest_path, selected_path)
+    for path in paths:
+        if path.exists() or path.is_symlink():
+            raise SystemExit(f'Refusing to overwrite evidence: {path}')
     discovery_seeds = [1, 2, 3, 4]
     confirmation_seeds = list(range(101, 109))
     binary = args.binary.resolve()
@@ -63,11 +67,13 @@ def main():
                     selection='mean discovery curve success, then shorter curve length',
                     training_starts=[4, 6], heldout_starts=[3, 7],
                     evaluation='64 episodes, stochastic greedy ties, shaping disabled',
+                    binary=dict(path=str(binary), sha256=digest(binary)),
                     source_sha256={p: digest(ROOT / p) for p in source_paths},
                     configs=configs)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     # Freeze the design on disk before any discovery runs.
-    args.output.with_suffix('.manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    with manifest_path.open('x') as stream:
+        stream.write(json.dumps(manifest, indent=2) + '\n')
     started = time.monotonic()
     runs = []
 
@@ -90,7 +96,8 @@ def main():
             candidates.append(((score, -length), config))
         selected[family] = max(candidates, key=lambda item: item[0])[1]
     # No selection using held-out starts or confirmation seeds.
-    args.output.with_suffix('.selected.json').write_text(json.dumps(selected, indent=2) + '\n')
+    with selected_path.open('x') as stream:
+        stream.write(json.dumps(selected, indent=2) + '\n')
     summary = {}
     for family, config in selected.items():
         batch = [execute(config, seed, 'confirmation') for seed in manifest['confirmation_seeds']]
@@ -119,7 +126,8 @@ def main():
     output = dict(primary_contrast=contrast, manifest=manifest, selected=selected, summary=summary, runs=runs,
                   total_wall_seconds=time.monotonic() - started,
                   limitation='Diagnostic only; no PPO runs, causal amplification claim, or broad transfer.')
-    args.output.write_text(json.dumps(output, indent=2) + '\n')
+    with args.output.open('x') as stream:
+        stream.write(json.dumps(output, indent=2) + '\n')
     print(json.dumps({'runs': len(runs), 'primary_contrast': contrast, 'summary': summary,
                       'total_wall_seconds': output['total_wall_seconds']}, indent=2))
 

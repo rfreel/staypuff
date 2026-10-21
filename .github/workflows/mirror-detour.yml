@@ -8,6 +8,7 @@ on:
       - 'src/pufferenv.h'
       - 'src/ini.h'
       - 'src/puffercpu.c'
+      - 'src/pufferl.cu'
       - '.github/workflows/mirror-detour.yml'
   push:
     paths:
@@ -35,6 +36,8 @@ jobs:
           python3 projects/mirror-detour/oracle.py --output /tmp/mirror-oracle.json
       - name: Native runtime untrained smoke (not a learning result)
         run: ./mirror_view --headless --eval_episodes=10 --env.evaluate=1
+      - name: Runner regressions (CUDA initialization requires separate GPU hardware)
+        run: MIRROR_CPU_BINARY=./mirror_view python3 projects/mirror-detour/test_runners.py -v
       - name: Validate experiment scripts and native plan
         run: |
           python3 -m py_compile projects/mirror-detour/run.py projects/mirror-detour/native.py

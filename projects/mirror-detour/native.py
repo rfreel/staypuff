@@ -71,6 +71,9 @@ def main():
             line = next(line for line in result.splitlines() if line.startswith('CPU_EVAL '))
             values = dict(field.split('=', 1) for field in line.split()[1:])
             assert values['untrained'] == '0' and float(values['n']) == 256
+            for key in ('perf', 'score', 'left', 'right', 'length', 'bonus'):
+                assert key in values, f'Missing evaluation metric: {key}'
+            assert float(values['bonus']) == 0, 'evaluation shaping must be disabled'
             scores.append(dict(radius=radius, metrics=values))
         results.append(dict(arm=item['arm'], checkpoint=str(weights), scores=scores,
                             train_and_eval_seconds=time.monotonic() - started))

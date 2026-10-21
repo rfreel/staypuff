@@ -953,6 +953,7 @@ int main(int argc, char** argv) {
         float n = env.log.n;
         float perf = 0.0f;
         float score = 0.0f;
+        Dict out = {0};
         if (n > 0.0f) {
             Log avg = env.log;
             float* acc = (float*)&avg;
@@ -960,19 +961,28 @@ int main(int argc, char** argv) {
             for (int i = 0; i < nf; i++) {
                 acc[i] /= n;
             }
-            Dict out = {0};
             puf_log(&avg, &out);
             dict_set(&out, "n", n);
             DictItem* pi = dict_find(&out, "perf");
             DictItem* si = dict_find(&out, "score");
             if (pi) perf = pi->value;
             if (si) score = si->value;
-            dict_clear(&out);
         }
-        printf("CPU_EVAL env=%s file_floats=%d need=%d match=%d untrained=%d n=%.0f perf=%.6f score=%.6f steps=%d agents=%d\n",
+        printf("CPU_EVAL env=%s file_floats=%d need=%d match=%d untrained=%d n=%.0f perf=%.6f score=%.6f steps=%d agents=%d",
             env_name, file_floats, need,
             (need - file_floats <= 7) ? 1 : 0,
             !have_net, n, perf, score, steps, env.num_agents);
+        // Retain environment metrics; n, perf and score are already printed.
+        for (int i = 0; i < out.size; i++) {
+            DictItem* item = &out.items[i];
+            if (strcmp(item->key, "n") == 0 || strcmp(item->key, "perf") == 0
+                    || strcmp(item->key, "score") == 0) {
+                continue;
+            }
+            printf(" %s=%.6f", item->key, item->value);
+        }
+        printf("\n");
+        dict_clear(&out);
         fflush(stdout);
     }
 

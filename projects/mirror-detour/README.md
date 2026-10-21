@@ -51,13 +51,19 @@ From repository root, with the normal PufferLib build dependencies installed:
 ./build.sh mirror_detour mirror_view --cpu --debug
 bash projects/mirror-detour/verify.sh
 ./mirror_view --headless --eval_episodes=10 --env.evaluate=1
+MIRROR_CPU_BINARY=./mirror_view python3 projects/mirror-detour/test_runners.py -v
 ```
 
 Tests use the real src/pufferenv.h and raylib headers, not an API stub. The
 headless test linker discards unused renderer functions; the runtime smoke uses
 the actual src/puffercpu.c and raylib library. On a ptrace-restricted host only,
 LeakSanitizer may need `ASAN_OPTIONS=detect_leaks=0`; ASan and UBSan remain enabled.
-CI uses the normal sanitizer settings.
+CI uses the normal sanitizer settings. The runner tests cover partial-file and
+late-write collisions, executable identity, and retained evaluation metrics.
+On CUDA hardware, set `MIRROR_CUDA_BINARY=./mirror_puffer` for the additional
+training-initialization regression: it compares initial self-play checkpoint
+bytes with supplied weights, with zero rollouts or optimizer updates. That test
+is skipped explicitly on CPU-only CI; it is not a trained-policy result.
 
 ## Executed CPU diagnostic
 
@@ -77,6 +83,11 @@ in training. This tests reset-distribution transfer, not unseen geometry.
 Each evaluation uses 64 episodes; the eight seeds, not the repeated episodes,
 are the independent confirmation units. The initial hand-run smoke used seed 1
 and is not independent confirmation evidence.
+
+New manifests record the resolved diagnostic executable path and SHA-256 as
+well as source hashes. This identifies the supplied binary; it does not certify
+that it was built from those sources. Interrupted runs retain their manifest or
+selection file, and retries require a fresh output path. Past evidence is unchanged.
 
 Every family receives the same candidate count and training-step budget.
 Baseline candidates and persistent duration candidates intentionally duplicate
@@ -107,10 +118,14 @@ It has been syntax/plan checked here; CUDA execution remains unmeasured.
 The annealing clock is local to each environment and survives episode reset.
 At a complete synchronous rollout boundary, global steps / total_agents gives
 per-instance progress. Native checkpoints save weights, NOT this clock, optimizer
-state, or episode state. For manual weights-only continuation, explicitly supply
+state, RNG, or episode state. Training loads `base.load_model_path` into the
+trainable policy before the first rollout or initial self-play checkpoint. For
+manual weights-only continuation, explicitly supply
 `--env.step_offset=...` and the same original `--env.anneal_steps=...` with
 `--base.load_model_path=...`. This restores the reward phase only, not an exact
-training resume. The native runner starts fresh and uses async=0; it does not
+training resume: optimizer, RNG, learning-rate schedule, episode state and
+training/checkpoint step counters restart. `train.total_timesteps` is the new
+run budget, not a cumulative target; use a fresh run ID/output path. The native runner starts fresh and uses async=0; it does not
 pretend to restore a complete training checkpoint.
 
 ## Interpretation
