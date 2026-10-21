@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/rfreel/staypuff/blob/5.0/projects/household-world/schemas/puffervis.scene.v1.json",
+  "title": "PufferVis passive scene snapshot v1",
+  "description": "Read-only visualization state, not an RL observation, action, reward, or physical ground truth.",
+  "type": "object",
+  "required": ["schema", "scene_id", "revision", "provenance", "camera", "world", "zones", "entities", "connections", "hud"],
+  "properties": {
+    "schema": {"const": "puffervis.scene.v1"},
+    "scene_id": {"type": "string", "minLength": 1},
+    "revision": {"type": "integer", "minimum": 0},
+    "provenance": {"type": "string"},
+    "layout_provenance": {"type": "string"},
+    "camera": {
+      "type": "object",
+      "required": ["projection", "target", "zoom"],
+      "properties": {
+        "projection": {"enum": ["isometric"]},
+        "target": {"$ref": "#/$defs/vec3"},
+        "zoom": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "world": {
+      "type": "object",
+      "required": ["width", "depth"],
+      "properties": {
+        "width": {"type": "number", "exclusiveMinimum": 0},
+        "depth": {"type": "number", "exclusiveMinimum": 0},
+        "tile_size": {"type": "number", "exclusiveMinimum": 0}
+      }
+    },
+    "zones": {"type": "array", "items": {"$ref": "#/$defs/zone"}},
+    "entities": {"type": "array", "items": {"$ref": "#/$defs/entity"}},
+    "connections": {"type": "array", "items": {"$ref": "#/$defs/connection"}},
+    "hud": {"type": "object"},
+    "annotations": {"type": "array", "items": {"type": "string"}}
+  },
+  "$defs": {
+    "vec3": {
+      "type": "array",
+      "prefixItems": [{"type": "number"}, {"type": "number"}, {"type": "number"}],
+      "items": false,
+      "minItems": 3,
+      "maxItems": 3
+    },
+    "entity": {
+      "type": "object",
+      "required": ["id", "visual", "position", "label", "facts", "signal"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "visual": {"type": "string", "minLength": 1},
+        "position": {"$ref": "#/$defs/vec3"},
+        "rotation": {"type": "number"},
+        "variant": {"type": "string"},
+        "label": {"type": "string"},
+        "facts": {"type": "object"},
+        "signal": {"type": "string"}
+      }
+    },
+    "zone": {
+      "type": "object",
+      "required": ["id", "label", "x", "z", "width", "depth", "material"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "label": {"type": "string"},
+        "x": {"type": "number"},
+        "z": {"type": "number"},
+        "width": {"type": "number", "exclusiveMinimum": 0},
+        "depth": {"type": "number", "exclusiveMinimum": 0},
+        "material": {"type": "string"}
+      }
+    },
+    "connection": {
+      "type": "object",
+      "required": ["from", "to", "kind"],
+      "properties": {
+        "from": {"type": "string"},
+        "to": {"type": "string"},
+        "kind": {"type": "string"}
+      }
+    }
+  }
+}
