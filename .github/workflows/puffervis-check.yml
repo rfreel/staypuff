@@ -34,6 +34,11 @@ jobs:
         run: python -m pytest -q
       - name: Native Ocean adapter smoke test
         run: bash scripts/build_native.sh
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Renderer and playback regression tests
+        run: node --test tests/puffervis.test.cjs
       - name: Validate browser renderer syntax
         run: |
           node --check web/puffervis.js
@@ -53,3 +58,16 @@ jobs:
           validator.validate(json.loads(Path('examples/puffervis_warehouse.json').read_text()))
           print('PufferVis scene schema PASS')
           PY
+
+      - name: Desktop and mobile browser regressions
+        run: |
+          npm install --no-save --package-lock=false playwright@1.62.1
+          npx playwright install --with-deps chromium
+          python -m uvicorn household.api:app --host 127.0.0.1 --port 8765 &
+          server_pid=$!
+          trap 'kill "$server_pid"' EXIT
+          for i in $(seq 1 50); do
+            if curl -fsS http://127.0.0.1:8765/api/state >/dev/null; then break; fi
+            sleep 0.2
+          done
+          node tests/puffervis.browser.cjs
