@@ -1,0 +1,39 @@
+name: Procedure Lab native verification
+on:
+  pull_request:
+    paths:
+      - 'ocean/procedure_lab/**'
+      - 'projects/procedure-lab/**'
+      - 'config/procedure_lab.ini'
+      - 'config/default.ini'
+      - 'src/pufferenv.h'
+      - 'src/ini.h'
+      - 'src/puffercpu.c'
+      - 'build.sh'
+      - '.github/workflows/procedure-lab.yml'
+  push:
+    paths:
+      - 'ocean/procedure_lab/**'
+      - 'projects/procedure-lab/**'
+      - 'config/procedure_lab.ini'
+      - '.github/workflows/procedure-lab.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo apt-get update && sudo apt-get install -y clang libomp-dev libgl1-mesa-dev
+      - name: Build actual CPU runtime with sanitizers
+        run: ./build.sh procedure_lab procedure_lab_view --cpu --debug
+      - name: Exact oracle, provenance, replay, buffer and baseline checks
+        run: bash projects/procedure-lab/verify.sh
+      - name: Native runtime smoke with untrained policy
+        run: ./procedure_lab_view --headless --eval_episodes=10 --env.evaluate=1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: procedure-lab-results
+          path: /tmp/staypuff-procedure-lab/results*.json
