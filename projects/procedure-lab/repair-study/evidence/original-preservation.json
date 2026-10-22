@@ -1,0 +1,14 @@
+{
+  "base_commit": "f76b5997a998681c78ce04a8c5d07c5eb8e75fb2",
+  "files": {
+    "ocean/procedure_lab/procedure_lab.h": "13690b2300496ccb05978c468b9b7160b72a3e6fa159bf278cbff38183ca8f4e",
+    "projects/procedure-lab/ppo.py": "6ef11700bdf0b019cf275d74372436eca4ddc141dc61990fad8f6fc9f6ab9914",
+    "projects/procedure-lab/ppo_bridge.c": "bfad1e362164ab8ef208646cb9f93eaeb518294aa5954b685c35784c38adefda",
+    "projects/procedure-lab/PPO.md": "ea88873c256bf1ad84a8acb735d4b1bdbe99f0f6934f364e80f42637ac20c739",
+    "projects/procedure-lab/ppo-run/plan.json": "6eae8c01df0cf9981b9710f13f4f6561e299a473d9af3bd32b15f5dc19170ff4",
+    "projects/procedure-lab/ppo-run/results.json": "73f456d8e31815067ea1072b6c784c515d8a3da835cd7389054733c287b5d6f1",
+    "projects/procedure-lab/ppo-run/trace.jsonl": "3a810a7fcdb9a411c4c8c6d8e70e0b4312f113212cc6595bf6d3a515238cdd06",
+    "projects/procedure-lab/ppo-run/policy.pt": "3701c02c79c9a157b3fd76554d1c43ff25c845b327b88a2429271138822411c9",
+    "config/procedure_lab.ini": "af7aee8895ebe8c584e827b1a265a1b0c14603ec98d4ee3b8af4eb28069ac674"
+  }
+}

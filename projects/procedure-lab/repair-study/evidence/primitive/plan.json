@@ -1,0 +1,62 @@
+{
+  "steps": 1048576,
+  "seeds": [
+    7,
+    19,
+    41
+  ],
+  "episodes_per_condition": 128,
+  "arms": {
+    "control": [
+      0,
+      false,
+      false
+    ],
+    "abandon_charge": [
+      1,
+      false,
+      false
+    ],
+    "no_cost": [
+      2,
+      false,
+      false
+    ],
+    "feedback": [
+      3,
+      false,
+      false
+    ],
+    "exploration": [
+      3,
+      true,
+      false
+    ],
+    "curriculum": [
+      3,
+      true,
+      true
+    ]
+  },
+  "evaluation_seed": 910007,
+  "evaluation": "final checkpoint only, full difficulty, six conditions, no selection",
+  "gamma": 0.99,
+  "gae_lambda": 0.95,
+  "entropy": 0.01,
+  "lr": 0.0003,
+  "clip": 0.2,
+  "epochs": 4,
+  "minibatch": 2048,
+  "environments": 256,
+  "horizon": 64,
+  "threads": 2,
+  "torch": "2.14.1+cpu",
+  "numpy": "2.3.5",
+  "platform": "Linux-6.18.55-x86_64-with-glibc2.39",
+  "sources": {
+    "projects/procedure-lab/repair-study/variant.h": "1efd69a32c40ca34b04a7219774250ff51ea0aef43454124369f49a4f8416f5e",
+    "projects/procedure-lab/repair-study/bridge.c": "757d5665ae3ffd644a279a883035199465a51e30a2cc5cecd7bf02762be5c494",
+    "projects/procedure-lab/repair-study/run.py": "5a8d2df1221dc176128060cf7f0ed1be559d99117efacf3ef3c076670b9fc1ca",
+    "ocean/procedure_lab/procedure_lab.h": "13690b2300496ccb05978c468b9b7160b72a3e6fa159bf278cbff38183ca8f4e"
+  }
+}

@@ -1,0 +1,362 @@
+{
+  "primitive": [
+    {
+      "arm": "control",
+      "accuracy": {
+        "mean": 0.4036661781962418,
+        "min": 0.4036661781962418,
+        "max": 0.4036661781962418
+      },
+      "actual_gain": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "immediate_abandon": {
+        "mean": 0.9991319444444443,
+        "min": 0.9986979166666666,
+        "max": 1.0
+      },
+      "abandoned": {
+        "mean": 1.0,
+        "min": 1.0,
+        "max": 1.0
+      },
+      "rounds": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "retained": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "repair_sequences": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "arm": "abandon_charge",
+      "accuracy": {
+        "mean": 0.4036661781962418,
+        "min": 0.4036661781962418,
+        "max": 0.4036661781962418
+      },
+      "actual_gain": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "immediate_abandon": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "abandoned": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "rounds": {
+        "mean": 3.0,
+        "min": 3.0,
+        "max": 3.0
+      },
+      "retained": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "repair_sequences": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "arm": "no_cost",
+      "accuracy": {
+        "mean": 0.4036661781962418,
+        "min": 0.4036661781962418,
+        "max": 0.4036661781962418
+      },
+      "actual_gain": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "immediate_abandon": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "abandoned": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "rounds": {
+        "mean": 2.9817708333333335,
+        "min": 2.9739583333333335,
+        "max": 2.98828125
+      },
+      "retained": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "repair_sequences": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "arm": "feedback",
+      "accuracy": {
+        "mean": 0.4036661781962418,
+        "min": 0.4036661781962418,
+        "max": 0.4036661781962418
+      },
+      "actual_gain": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "immediate_abandon": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "abandoned": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "rounds": {
+        "mean": 3.0,
+        "min": 3.0,
+        "max": 3.0
+      },
+      "retained": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "repair_sequences": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "arm": "exploration",
+      "accuracy": {
+        "mean": 0.4036661781962418,
+        "min": 0.4036661781962418,
+        "max": 0.4036661781962418
+      },
+      "actual_gain": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "immediate_abandon": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "abandoned": {
+        "mean": 0.0008680555555555555,
+        "min": 0.0,
+        "max": 0.0013020833333333333
+      },
+      "rounds": {
+        "mean": 2.997829861111111,
+        "min": 2.99609375,
+        "max": 3.0
+      },
+      "retained": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "repair_sequences": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    },
+    {
+      "arm": "curriculum",
+      "accuracy": {
+        "mean": 0.4036661781962418,
+        "min": 0.4036661781962418,
+        "max": 0.4036661781962418
+      },
+      "actual_gain": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "immediate_abandon": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "abandoned": {
+        "mean": 0.00043402777777777775,
+        "min": 0.0,
+        "max": 0.0013020833333333333
+      },
+      "rounds": {
+        "mean": 2.9991319444444446,
+        "min": 2.9973958333333335,
+        "max": 3.0
+      },
+      "retained": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "repair_sequences": {
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      }
+    }
+  ],
+  "macro": [
+    {
+      "seed": 7,
+      "transitions": 582087,
+      "learned": {
+        "accuracy": 0.8006930876387438,
+        "actual_gain": 0.4078843854798227,
+        "cost": 32.627604166666664
+      },
+      "random_target": {
+        "accuracy": 0.37651909739846207,
+        "actual_gain": -0.01628960488960729,
+        "cost": 33.061197916666664
+      },
+      "scripted": {
+        "accuracy": 1.0,
+        "actual_gain": 0.6071912972838618,
+        "cost": 33.03125
+      }
+    },
+    {
+      "seed": 19,
+      "transitions": 586040,
+      "learned": {
+        "accuracy": 0.7997097436843129,
+        "actual_gain": 0.40690104107185715,
+        "cost": 32.778645833333336
+      },
+      "random_target": {
+        "accuracy": 0.37651909739846207,
+        "actual_gain": -0.01628960488960729,
+        "cost": 33.061197916666664
+      },
+      "scripted": {
+        "accuracy": 1.0,
+        "actual_gain": 0.6071912972838618,
+        "cost": 33.03125
+      }
+    },
+    {
+      "seed": 41,
+      "transitions": 586056,
+      "learned": {
+        "accuracy": 0.8727823891094886,
+        "actual_gain": 0.4799736861217146,
+        "cost": 32.752604166666664
+      },
+      "random_target": {
+        "accuracy": 0.37651909739846207,
+        "actual_gain": -0.01628960488960729,
+        "cost": 33.061197916666664
+      },
+      "scripted": {
+        "accuracy": 1.0,
+        "actual_gain": 0.6071912972838618,
+        "cost": 33.03125
+      }
+    }
+  ],
+  "matched_macro": [
+    {
+      "seed": 7,
+      "learned": {
+        "accuracy": 0.8071289065604409,
+        "actual_gain": 0.3953721789154467,
+        "cost": 32.587239583333336
+      },
+      "random": {
+        "accuracy": 0.4117567273497116,
+        "actual_gain": 0.0,
+        "cost": 25.807291666666668
+      },
+      "valid_random": {
+        "accuracy": 0.41250949425739236,
+        "actual_gain": 0.0007527669198073758,
+        "cost": 25.985677083333332
+      },
+      "scripted": {
+        "accuracy": 1.0,
+        "actual_gain": 0.5882432722234322,
+        "cost": 31.322916666666668
+      }
+    },
+    {
+      "seed": 19,
+      "learned": {
+        "accuracy": 0.803541395366968,
+        "actual_gain": 0.3917846680099804,
+        "cost": 32.545572916666664
+      },
+      "random": {
+        "accuracy": 0.4117567273497116,
+        "actual_gain": 0.0,
+        "cost": 25.83203125
+      },
+      "valid_random": {
+        "accuracy": 0.41250949425739236,
+        "actual_gain": 0.0007527669198073758,
+        "cost": 25.9375
+      },
+      "scripted": {
+        "accuracy": 1.0,
+        "actual_gain": 0.5882432722234322,
+        "cost": 31.41796875
+      }
+    },
+    {
+      "seed": 41,
+      "learned": {
+        "accuracy": 0.8798556856345385,
+        "actual_gain": 0.4680989581095976,
+        "cost": 32.579427083333336
+      },
+      "random": {
+        "accuracy": 0.4117567273497116,
+        "actual_gain": 0.0,
+        "cost": 25.83203125
+      },
+      "valid_random": {
+        "accuracy": 0.41250949425739236,
+        "actual_gain": 0.0007527669198073758,
+        "cost": 26.0
+      },
+      "scripted": {
+        "accuracy": 1.0,
+        "actual_gain": 0.5882432722234322,
+        "cost": 31.924479166666668
+      }
+    }
+  ]
+}

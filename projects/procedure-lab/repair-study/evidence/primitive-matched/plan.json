@@ -1,0 +1,12 @@
+{
+  "evaluation_seed": 1910007,
+  "episodes": 128,
+  "rule": "all final checkpoints; per-episode cost caps from policy on identical seeds; read-only final scoring",
+  "sources": {
+    "matched.py": "3f96e57817ddb1739b16dcdda3b78ab9a97ce11f80b14dcfe9bff4b1d419e6ef",
+    "budget_bridge.c": "3573ba7c88551571f34c4f39901e0fa820ab9573dee9613dd84da771e118793d",
+    "run.py": "a56c51c8de07cfa651ea3ca56519f7a6e1aae8fc12220a46fb12fa38581ade03",
+    "bridge.c": "757d5665ae3ffd644a279a883035199465a51e30a2cc5cecd7bf02762be5c494",
+    "variant.h": "1efd69a32c40ca34b04a7219774250ff51ea0aef43454124369f49a4f8416f5e"
+  }
+}

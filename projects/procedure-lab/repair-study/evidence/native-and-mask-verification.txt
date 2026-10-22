@@ -1,0 +1,6 @@
+{"oracle_checks":312480,"distinct_contracts":16,"tamper_and_shaping_episodes":512}
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.858s
+
+OK

@@ -1,0 +1,770 @@
+[
+  {
+    "update": 1,
+    "transitions": 4640,
+    "actual_gain": -0.032165527511097025,
+    "accuracy": 0.4038085934589617
+  },
+  {
+    "update": 2,
+    "transitions": 9234,
+    "actual_gain": -0.023091634442607756,
+    "accuracy": 0.3920898442447651
+  },
+  {
+    "update": 3,
+    "transitions": 13808,
+    "actual_gain": 0.031962075852788985,
+    "accuracy": 0.45322672580368817
+  },
+  {
+    "update": 4,
+    "transitions": 18349,
+    "actual_gain": 0.03633626306873339,
+    "accuracy": 0.4328409823938273
+  },
+  {
+    "update": 5,
+    "transitions": 22879,
+    "actual_gain": -0.009175618801236851,
+    "accuracy": 0.4104003911197651
+  },
+  {
+    "update": 6,
+    "transitions": 27444,
+    "actual_gain": 0.028299966930717346,
+    "accuracy": 0.44773356145014986
+  },
+  {
+    "update": 7,
+    "transitions": 31965,
+    "actual_gain": 0.029398599595879205,
+    "accuracy": 0.4465332040854264
+  },
+  {
+    "update": 8,
+    "transitions": 36427,
+    "actual_gain": 0.028747558551913244,
+    "accuracy": 0.4600830086856149
+  },
+  {
+    "update": 9,
+    "transitions": 40953,
+    "actual_gain": 0.06052652908874734,
+    "accuracy": 0.46915690071182325
+  },
+  {
+    "update": 10,
+    "transitions": 45472,
+    "actual_gain": 0.041158040665322915,
+    "accuracy": 0.4770914709952194
+  },
+  {
+    "update": 11,
+    "transitions": 49994,
+    "actual_gain": 0.12377929668946308,
+    "accuracy": 0.5369873037561774
+  },
+  {
+    "update": 12,
+    "transitions": 54496,
+    "actual_gain": 0.09549967449493124,
+    "accuracy": 0.5203247070021462
+  },
+  {
+    "update": 13,
+    "transitions": 58957,
+    "actual_gain": 0.1208292636074475,
+    "accuracy": 0.5362955737509765
+  },
+  {
+    "update": 14,
+    "transitions": 63358,
+    "actual_gain": 0.09940592386919889,
+    "accuracy": 0.5190429685171694
+  },
+  {
+    "update": 15,
+    "transitions": 67770,
+    "actual_gain": 0.11132812471987563,
+    "accuracy": 0.553934732277412
+  },
+  {
+    "update": 16,
+    "transitions": 72240,
+    "actual_gain": 0.1412963863058394,
+    "accuracy": 0.5633951818163041
+  },
+  {
+    "update": 17,
+    "transitions": 76621,
+    "actual_gain": 0.1513468414232193,
+    "accuracy": 0.5839436840033159
+  },
+  {
+    "update": 18,
+    "transitions": 81038,
+    "actual_gain": 0.18402099660306703,
+    "accuracy": 0.5881144198065158
+  },
+  {
+    "update": 19,
+    "transitions": 85440,
+    "actual_gain": 0.14383951824675023,
+    "accuracy": 0.594950358121423
+  },
+  {
+    "update": 20,
+    "transitions": 89853,
+    "actual_gain": 0.19429524678344023,
+    "accuracy": 0.6171671546471771
+  },
+  {
+    "update": 21,
+    "transitions": 94335,
+    "actual_gain": 0.194905598902551,
+    "accuracy": 0.6095174161891919
+  },
+  {
+    "update": 22,
+    "transitions": 98851,
+    "actual_gain": 0.21384684228905826,
+    "accuracy": 0.6289265953819267
+  },
+  {
+    "update": 23,
+    "transitions": 103323,
+    "actual_gain": 0.22633870395111444,
+    "accuracy": 0.632385255972622
+  },
+  {
+    "update": 24,
+    "transitions": 107818,
+    "actual_gain": 0.20068359391370905,
+    "accuracy": 0.6452636717876885
+  },
+  {
+    "update": 25,
+    "transitions": 112268,
+    "actual_gain": 0.247863769360265,
+    "accuracy": 0.6685384117299691
+  },
+  {
+    "update": 26,
+    "transitions": 116682,
+    "actual_gain": 0.2259318026517576,
+    "accuracy": 0.6536051430157386
+  },
+  {
+    "update": 27,
+    "transitions": 121145,
+    "actual_gain": 0.27307128970460326,
+    "accuracy": 0.6851196300704032
+  },
+  {
+    "update": 28,
+    "transitions": 125682,
+    "actual_gain": 0.2725626630035549,
+    "accuracy": 0.6891072588623501
+  },
+  {
+    "update": 29,
+    "transitions": 130223,
+    "actual_gain": 0.27760823564494785,
+    "accuracy": 0.707336425955873
+  },
+  {
+    "update": 30,
+    "transitions": 134757,
+    "actual_gain": 0.30316162078997877,
+    "accuracy": 0.717529298941372
+  },
+  {
+    "update": 31,
+    "transitions": 139336,
+    "actual_gain": 0.3058471676558838,
+    "accuracy": 0.7268880204064772
+  },
+  {
+    "update": 32,
+    "transitions": 143857,
+    "actual_gain": 0.32517496780201327,
+    "accuracy": 0.7299601245322265
+  },
+  {
+    "update": 33,
+    "transitions": 148432,
+    "actual_gain": 0.27386474604827526,
+    "accuracy": 0.7115478509804234
+  },
+  {
+    "update": 34,
+    "transitions": 152998,
+    "actual_gain": 0.3244832356031111,
+    "accuracy": 0.7455851231934503
+  },
+  {
+    "update": 35,
+    "transitions": 157523,
+    "actual_gain": 0.2937622074987303,
+    "accuracy": 0.7150065103487577
+  },
+  {
+    "update": 36,
+    "transitions": 162067,
+    "actual_gain": 0.3278198241696373,
+    "accuracy": 0.7435913097579032
+  },
+  {
+    "update": 37,
+    "transitions": 166702,
+    "actual_gain": 0.3321126296177681,
+    "accuracy": 0.7283732087234966
+  },
+  {
+    "update": 38,
+    "transitions": 171284,
+    "actual_gain": 0.3051350919158722,
+    "accuracy": 0.7299804680806119
+  },
+  {
+    "update": 39,
+    "transitions": 175845,
+    "actual_gain": 0.3356119790223602,
+    "accuracy": 0.749145507987123
+  },
+  {
+    "update": 40,
+    "transitions": 180294,
+    "actual_gain": 0.33357747510854097,
+    "accuracy": 0.7560221348539926
+  },
+  {
+    "update": 41,
+    "transitions": 184800,
+    "actual_gain": 0.35323079439149296,
+    "accuracy": 0.7517293297278229
+  },
+  {
+    "update": 42,
+    "transitions": 189346,
+    "actual_gain": 0.3172607418055122,
+    "accuracy": 0.7541910808067769
+  },
+  {
+    "update": 43,
+    "transitions": 193860,
+    "actual_gain": 0.3462727867990907,
+    "accuracy": 0.7630411791033112
+  },
+  {
+    "update": 44,
+    "transitions": 198475,
+    "actual_gain": 0.34145100936075323,
+    "accuracy": 0.7608439116738737
+  },
+  {
+    "update": 45,
+    "transitions": 202961,
+    "actual_gain": 0.344258625902512,
+    "accuracy": 0.7726643881469499
+  },
+  {
+    "update": 46,
+    "transitions": 207527,
+    "actual_gain": 0.36185709658820997,
+    "accuracy": 0.7773437501164153
+  },
+  {
+    "update": 47,
+    "transitions": 212075,
+    "actual_gain": 0.3373413080953469,
+    "accuracy": 0.7828776047681458
+  },
+  {
+    "update": 48,
+    "transitions": 216657,
+    "actual_gain": 0.3654378248138528,
+    "accuracy": 0.7820231124642305
+  },
+  {
+    "update": 49,
+    "transitions": 221220,
+    "actual_gain": 0.34112548864868586,
+    "accuracy": 0.7733357750112191
+  },
+  {
+    "update": 50,
+    "transitions": 225725,
+    "actual_gain": 0.3624064115665533,
+    "accuracy": 0.788879395055119
+  },
+  {
+    "update": 51,
+    "transitions": 230323,
+    "actual_gain": 0.38100179069442675,
+    "accuracy": 0.7933146171853878
+  },
+  {
+    "update": 52,
+    "transitions": 234859,
+    "actual_gain": 0.37774658203125,
+    "accuracy": 0.7921142581035383
+  },
+  {
+    "update": 53,
+    "transitions": 239446,
+    "actual_gain": 0.38427734354991117,
+    "accuracy": 0.8028971353778616
+  },
+  {
+    "update": 54,
+    "transitions": 243995,
+    "actual_gain": 0.3700561537043541,
+    "accuracy": 0.798197427066043
+  },
+  {
+    "update": 55,
+    "transitions": 248558,
+    "actual_gain": 0.3882853173672629,
+    "accuracy": 0.7937418618239462
+  },
+  {
+    "update": 56,
+    "transitions": 253130,
+    "actual_gain": 0.34547932908390067,
+    "accuracy": 0.7837320960825309
+  },
+  {
+    "update": 57,
+    "transitions": 257665,
+    "actual_gain": 0.3778483081532613,
+    "accuracy": 0.7885131827206351
+  },
+  {
+    "update": 58,
+    "transitions": 262284,
+    "actual_gain": 0.37190755212395743,
+    "accuracy": 0.7977091457578354
+  },
+  {
+    "update": 59,
+    "transitions": 266841,
+    "actual_gain": 0.38045247414993355,
+    "accuracy": 0.7914835609844886
+  },
+  {
+    "update": 60,
+    "transitions": 271401,
+    "actual_gain": 0.3813273115447373,
+    "accuracy": 0.8018798835691996
+  },
+  {
+    "update": 61,
+    "transitions": 275948,
+    "actual_gain": 0.3667195650523354,
+    "accuracy": 0.7895914708497003
+  },
+  {
+    "update": 62,
+    "transitions": 280507,
+    "actual_gain": 0.37477620430945535,
+    "accuracy": 0.8020019525429234
+  },
+  {
+    "update": 63,
+    "transitions": 285012,
+    "actual_gain": 0.3685913076878933,
+    "accuracy": 0.8015136712347157
+  },
+  {
+    "update": 64,
+    "transitions": 289558,
+    "actual_gain": 0.38315836536639836,
+    "accuracy": 0.7968953454983421
+  },
+  {
+    "update": 65,
+    "transitions": 294132,
+    "actual_gain": 0.3602294915999664,
+    "accuracy": 0.7999674475868233
+  },
+  {
+    "update": 66,
+    "transitions": 298669,
+    "actual_gain": 0.3917643237437005,
+    "accuracy": 0.8030598958721384
+  },
+  {
+    "update": 67,
+    "transitions": 303306,
+    "actual_gain": 0.38085937555479177,
+    "accuracy": 0.7973225913592614
+  },
+  {
+    "update": 68,
+    "transitions": 307864,
+    "actual_gain": 0.3752441410179017,
+    "accuracy": 0.7918701169546694
+  },
+  {
+    "update": 69,
+    "transitions": 312435,
+    "actual_gain": 0.3796183274662326,
+    "accuracy": 0.8034464517259039
+  },
+  {
+    "update": 70,
+    "transitions": 317005,
+    "actual_gain": 0.37349446746884496,
+    "accuracy": 0.8010660823783837
+  },
+  {
+    "update": 71,
+    "transitions": 321521,
+    "actual_gain": 0.38505045535202953,
+    "accuracy": 0.7978312175255269
+  },
+  {
+    "update": 72,
+    "transitions": 326103,
+    "actual_gain": 0.3847452792633703,
+    "accuracy": 0.8052571612643078
+  },
+  {
+    "update": 73,
+    "transitions": 330691,
+    "actual_gain": 0.4002482081123162,
+    "accuracy": 0.8036092131515034
+  },
+  {
+    "update": 74,
+    "transitions": 335253,
+    "actual_gain": 0.3702189124542201,
+    "accuracy": 0.8066609706147574
+  },
+  {
+    "update": 75,
+    "transitions": 339849,
+    "actual_gain": 0.3973388669000997,
+    "accuracy": 0.8079020176664926
+  },
+  {
+    "update": 76,
+    "transitions": 344406,
+    "actual_gain": 0.36802164710024954,
+    "accuracy": 0.8033040360314772
+  },
+  {
+    "update": 77,
+    "transitions": 348937,
+    "actual_gain": 0.3790486647612852,
+    "accuracy": 0.8040161126991734
+  },
+  {
+    "update": 78,
+    "transitions": 353534,
+    "actual_gain": 0.39296468022257613,
+    "accuracy": 0.7998046882566996
+  },
+  {
+    "update": 79,
+    "transitions": 358089,
+    "actual_gain": 0.37660725945897866,
+    "accuracy": 0.8065592453931458
+  },
+  {
+    "update": 80,
+    "transitions": 362650,
+    "actual_gain": 0.391988118775771,
+    "accuracy": 0.8028767907526344
+  },
+  {
+    "update": 81,
+    "transitions": 367249,
+    "actual_gain": 0.3706054681970272,
+    "accuracy": 0.7972005213960074
+  },
+  {
+    "update": 82,
+    "transitions": 371850,
+    "actual_gain": 0.40543619897653116,
+    "accuracy": 0.8066202806076035
+  },
+  {
+    "update": 83,
+    "transitions": 376382,
+    "actual_gain": 0.37019856908591464,
+    "accuracy": 0.8061930346884765
+  },
+  {
+    "update": 84,
+    "transitions": 380955,
+    "actual_gain": 0.39184570421821263,
+    "accuracy": 0.8036092118127272
+  },
+  {
+    "update": 85,
+    "transitions": 385497,
+    "actual_gain": 0.3836669927750336,
+    "accuracy": 0.8068644202430733
+  },
+  {
+    "update": 86,
+    "transitions": 390045,
+    "actual_gain": 0.3829956042300182,
+    "accuracy": 0.8028971361345612
+  },
+  {
+    "update": 87,
+    "transitions": 394643,
+    "actual_gain": 0.38946533142006956,
+    "accuracy": 0.797973632463254
+  },
+  {
+    "update": 88,
+    "transitions": 399160,
+    "actual_gain": 0.3630167650007934,
+    "accuracy": 0.8102620439021848
+  },
+  {
+    "update": 89,
+    "transitions": 403716,
+    "actual_gain": 0.3938395186087291,
+    "accuracy": 0.8044840489164926
+  },
+  {
+    "update": 90,
+    "transitions": 408325,
+    "actual_gain": 0.38592529332163394,
+    "accuracy": 0.8074137369403616
+  },
+  {
+    "update": 91,
+    "transitions": 412893,
+    "actual_gain": 0.3929239915087237,
+    "accuracy": 0.8100179034518078
+  },
+  {
+    "update": 92,
+    "transitions": 417489,
+    "actual_gain": 0.38844808034264133,
+    "accuracy": 0.8069254552247003
+  },
+  {
+    "update": 93,
+    "transitions": 422055,
+    "actual_gain": 0.3828531909821322,
+    "accuracy": 0.8080647772876546
+  },
+  {
+    "update": 94,
+    "transitions": 426582,
+    "actual_gain": 0.3822021493688226,
+    "accuracy": 0.7998657229472883
+  },
+  {
+    "update": 95,
+    "transitions": 431134,
+    "actual_gain": 0.3759969075163099,
+    "accuracy": 0.8076782237039879
+  },
+  {
+    "update": 96,
+    "transitions": 435808,
+    "actual_gain": 0.41400146459636744,
+    "accuracy": 0.8053588875918649
+  },
+  {
+    "update": 97,
+    "transitions": 440368,
+    "actual_gain": 0.3703206374702859,
+    "accuracy": 0.8133138017728925
+  },
+  {
+    "update": 98,
+    "transitions": 444938,
+    "actual_gain": 0.3876749676455802,
+    "accuracy": 0.8059082037070766
+  },
+  {
+    "update": 99,
+    "transitions": 449557,
+    "actual_gain": 0.38372802730009425,
+    "accuracy": 0.8083089198335074
+  },
+  {
+    "update": 100,
+    "transitions": 454054,
+    "actual_gain": 0.387858072113886,
+    "accuracy": 0.8105061851674691
+  },
+  {
+    "update": 101,
+    "transitions": 458672,
+    "actual_gain": 0.40637206985775265,
+    "accuracy": 0.8056640622089617
+  },
+  {
+    "update": 102,
+    "transitions": 463197,
+    "actual_gain": 0.36464436922688037,
+    "accuracy": 0.8098347983905114
+  },
+  {
+    "update": 103,
+    "transitions": 467712,
+    "actual_gain": 0.3897705062190653,
+    "accuracy": 0.8026326490216888
+  },
+  {
+    "update": 104,
+    "transitions": 472297,
+    "actual_gain": 0.38893636030115886,
+    "accuracy": 0.8083496092585847
+  },
+  {
+    "update": 105,
+    "transitions": 476910,
+    "actual_gain": 0.40295410187900416,
+    "accuracy": 0.809326171525754
+  },
+  {
+    "update": 106,
+    "transitions": 481520,
+    "actual_gain": 0.380472818898852,
+    "accuracy": 0.8059285476920195
+  },
+  {
+    "update": 107,
+    "transitions": 486051,
+    "actual_gain": 0.37408447220514063,
+    "accuracy": 0.8082275397027843
+  },
+  {
+    "update": 108,
+    "transitions": 490642,
+    "actual_gain": 0.3930664060571871,
+    "accuracy": 0.8027547203237191
+  },
+  {
+    "update": 109,
+    "transitions": 495155,
+    "actual_gain": 0.38633219351322623,
+    "accuracy": 0.806681314134039
+  },
+  {
+    "update": 110,
+    "transitions": 499790,
+    "actual_gain": 0.4101359040396346,
+    "accuracy": 0.8095296212704852
+  },
+  {
+    "update": 111,
+    "transitions": 504379,
+    "actual_gain": 0.3823242183043476,
+    "accuracy": 0.8053385430248454
+  },
+  {
+    "update": 112,
+    "transitions": 508949,
+    "actual_gain": 0.38960774822044186,
+    "accuracy": 0.8053181971190497
+  },
+  {
+    "update": 113,
+    "transitions": 513571,
+    "actual_gain": 0.3851928718122508,
+    "accuracy": 0.8036092114052735
+  },
+  {
+    "update": 114,
+    "transitions": 518067,
+    "actual_gain": 0.37768554576541646,
+    "accuracy": 0.8046061201603152
+  },
+  {
+    "update": 115,
+    "transitions": 522682,
+    "actual_gain": 0.4073689779997949,
+    "accuracy": 0.8047281898325309
+  },
+  {
+    "update": 116,
+    "transitions": 527260,
+    "actual_gain": 0.3810221349267522,
+    "accuracy": 0.81719970703125
+  },
+  {
+    "update": 117,
+    "transitions": 531834,
+    "actual_gain": 0.4035237629941548,
+    "accuracy": 0.8056640625
+  },
+  {
+    "update": 118,
+    "transitions": 536348,
+    "actual_gain": 0.38246663454629015,
+    "accuracy": 0.814025878557004
+  },
+  {
+    "update": 119,
+    "transitions": 540953,
+    "actual_gain": 0.39298502717247175,
+    "accuracy": 0.8094889322528616
+  },
+  {
+    "update": 120,
+    "transitions": 545567,
+    "actual_gain": 0.3894042961328523,
+    "accuracy": 0.8074340829625726
+  },
+  {
+    "update": 121,
+    "transitions": 550092,
+    "actual_gain": 0.3680826819399954,
+    "accuracy": 0.8136800123611465
+  },
+  {
+    "update": 122,
+    "transitions": 554696,
+    "actual_gain": 0.3946126305472717,
+    "accuracy": 0.8034261069260538
+  },
+  {
+    "update": 123,
+    "transitions": 559171,
+    "actual_gain": 0.37740071520602214,
+    "accuracy": 0.8105875648325309
+  },
+  {
+    "update": 124,
+    "transitions": 563779,
+    "actual_gain": 0.4025268564328144,
+    "accuracy": 0.8056437179329805
+  },
+  {
+    "update": 125,
+    "transitions": 568382,
+    "actual_gain": 0.37823486335764755,
+    "accuracy": 0.8090616867411882
+  },
+  {
+    "update": 126,
+    "transitions": 572918,
+    "actual_gain": 0.3855794276314555,
+    "accuracy": 0.8108113604830578
+  },
+  {
+    "update": 127,
+    "transitions": 577526,
+    "actual_gain": 0.39658610003789363,
+    "accuracy": 0.8110961916390806
+  },
+  {
+    "update": 128,
+    "transitions": 582087,
+    "actual_gain": 0.38924153560219565,
+    "accuracy": 0.8087971998611465
+  }
+]
