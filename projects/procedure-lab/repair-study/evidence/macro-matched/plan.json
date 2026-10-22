@@ -1,0 +1,11 @@
+{
+  "seed": 3910007,
+  "episodes": 128,
+  "training_seeds": [
+    7,
+    19,
+    41
+  ],
+  "rule": "all checkpoints, identical task streams, exact per-episode native cost ceilings",
+  "source_sha256": "dc8bdfa394c8c56b881b4b436381758720cc7b3db2c4a73565682863969a2240"
+}

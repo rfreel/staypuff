@@ -1,0 +1,18 @@
+[
+  "cc",
+  "-shared",
+  "-fPIC",
+  "-O2",
+  "-fvisibility=hidden",
+  "-ffunction-sections",
+  "-fdata-sections",
+  "-Wl,--gc-sections",
+  "-Wl,--no-undefined",
+  "-D_POSIX_C_SOURCE=200809L",
+  "-I/workspace/scratch/6646dd9e1c57/staypuff/src",
+  "-I/tmp/procedure-headers",
+  "/workspace/scratch/6646dd9e1c57/staypuff/projects/procedure-lab/repair-study/bridge.c",
+  "-lm",
+  "-o",
+  "/tmp/procedure-study-v1/study.so"
+]

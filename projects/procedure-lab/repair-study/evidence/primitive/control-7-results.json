@@ -1,0 +1,325 @@
+{
+  "arm": "control",
+  "seed": 7,
+  "seconds": 52.14590136499919,
+  "conditions": [
+    {
+      "accuracy": 0.3687337243463844,
+      "actual_gain": 0.0,
+      "reward": -0.0020000000949949026,
+      "cost": 1.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "abandoned": 1.0,
+      "scored_gain": 0.0,
+      "shaping": 0.0,
+      "family": 0,
+      "shift": 0,
+      "episodes": 128,
+      "positive_gain": 0.0,
+      "gain_se": 0.0,
+      "steps": 1.0,
+      "immediate_abandon": 1.0,
+      "valid_fraction": 1.0,
+      "repair_sequences": 0.0,
+      "initial_abandon_probability": 0.9994721026159823,
+      "operation_frequency": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "operation_probability": [
+        5.866527862963267e-05,
+        4.445823287824169e-05,
+        8.250824612332508e-05,
+        2.464266617607791e-05,
+        4.693298978963867e-05,
+        1.7460806702729315e-05,
+        1.4016327440913301e-05,
+        1.3282851796247996e-05,
+        0.00015700895164627582,
+        0.999541163444519
+      ],
+      "first_episode_prefix": [
+        [
+          9,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "accuracy": 0.35078938747756183,
+      "actual_gain": 0.0,
+      "reward": -0.0020000000949949026,
+      "cost": 1.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "abandoned": 1.0,
+      "scored_gain": 0.0,
+      "shaping": 0.0,
+      "family": 0,
+      "shift": 1,
+      "episodes": 128,
+      "positive_gain": 0.0,
+      "gain_se": 0.0,
+      "steps": 1.0,
+      "immediate_abandon": 1.0,
+      "valid_fraction": 1.0,
+      "repair_sequences": 0.0,
+      "initial_abandon_probability": 0.9994721026159823,
+      "operation_frequency": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "operation_probability": [
+        5.866527862963267e-05,
+        4.445823287824169e-05,
+        8.250824612332508e-05,
+        2.464266617607791e-05,
+        4.693298978963867e-05,
+        1.7460806702729315e-05,
+        1.4016327440913301e-05,
+        1.3282851796247996e-05,
+        0.00015700895164627582,
+        0.999541163444519
+      ],
+      "first_episode_prefix": [
+        [
+          9,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "accuracy": 0.42683919228147715,
+      "actual_gain": 0.0,
+      "reward": -0.0020000000949949026,
+      "cost": 1.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "abandoned": 1.0,
+      "scored_gain": 0.0,
+      "shaping": 0.0,
+      "family": 1,
+      "shift": 0,
+      "episodes": 128,
+      "positive_gain": 0.0,
+      "gain_se": 0.0,
+      "steps": 1.0,
+      "immediate_abandon": 1.0,
+      "valid_fraction": 1.0,
+      "repair_sequences": 0.0,
+      "initial_abandon_probability": 0.9994869870133698,
+      "operation_frequency": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "operation_probability": [
+        5.6939450587378815e-05,
+        4.3114872823935e-05,
+        8.029166201595217e-05,
+        2.390146255493164e-05,
+        4.557767533697188e-05,
+        1.6915893866098486e-05,
+        1.356542907160474e-05,
+        1.2851727660745382e-05,
+        0.0001527761633042246,
+        0.9995540976524353
+      ],
+      "first_episode_prefix": [
+        [
+          9,
+          1,
+          0
+        ]
+      ]
+    },
+    {
+      "accuracy": 0.4029134103329852,
+      "actual_gain": 0.0,
+      "reward": -0.0020000000949949026,
+      "cost": 1.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "abandoned": 1.0,
+      "scored_gain": 0.0,
+      "shaping": 0.0,
+      "family": 1,
+      "shift": 1,
+      "episodes": 128,
+      "positive_gain": 0.0,
+      "gain_se": 0.0,
+      "steps": 1.0,
+      "immediate_abandon": 1.0,
+      "valid_fraction": 1.0,
+      "repair_sequences": 0.0,
+      "initial_abandon_probability": 0.9994869870133698,
+      "operation_frequency": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "operation_probability": [
+        5.6939450587378815e-05,
+        4.3114872823935e-05,
+        8.029166201595217e-05,
+        2.390146255493164e-05,
+        4.557767533697188e-05,
+        1.6915893866098486e-05,
+        1.356542907160474e-05,
+        1.2851727660745382e-05,
+        0.0001527761633042246,
+        0.9995540976524353
+      ],
+      "first_episode_prefix": [
+        [
+          9,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "accuracy": 0.4508870457066223,
+      "actual_gain": 0.0,
+      "reward": -0.0020000000949949026,
+      "cost": 1.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "abandoned": 1.0,
+      "scored_gain": 0.0,
+      "shaping": 0.0,
+      "family": 2,
+      "shift": 0,
+      "episodes": 128,
+      "positive_gain": 0.0,
+      "gain_se": 0.0,
+      "steps": 1.0,
+      "immediate_abandon": 1.0,
+      "valid_fraction": 1.0,
+      "repair_sequences": 0.0,
+      "initial_abandon_probability": 0.999488478526473,
+      "operation_frequency": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "operation_probability": [
+        5.677587250829674e-05,
+        4.2982086597476155e-05,
+        8.007076394278556e-05,
+        2.382659113209229e-05,
+        4.54429246019572e-05,
+        1.686215546214953e-05,
+        1.3521277651307173e-05,
+        1.2809717190975789e-05,
+        0.00015235866885632277,
+        0.999555766582489
+      ],
+      "first_episode_prefix": [
+        [
+          9,
+          1,
+          2
+        ]
+      ]
+    },
+    {
+      "accuracy": 0.4218343090324197,
+      "actual_gain": 0.0,
+      "reward": -0.0020000000949949026,
+      "cost": 1.0,
+      "invalid": 0.0,
+      "retained": 0.0,
+      "rounds": 0.0,
+      "abandoned": 1.0,
+      "scored_gain": 0.0,
+      "shaping": 0.0,
+      "family": 2,
+      "shift": 1,
+      "episodes": 128,
+      "positive_gain": 0.0,
+      "gain_se": 0.0,
+      "steps": 1.0,
+      "immediate_abandon": 1.0,
+      "valid_fraction": 1.0,
+      "repair_sequences": 0.0,
+      "initial_abandon_probability": 0.999488478526473,
+      "operation_frequency": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "operation_probability": [
+        5.677587250829674e-05,
+        4.2982086597476155e-05,
+        8.007076394278556e-05,
+        2.382659113209229e-05,
+        4.54429246019572e-05,
+        1.686215546214953e-05,
+        1.3521277651307173e-05,
+        1.2809717190975789e-05,
+        0.00015235866885632277,
+        0.999555766582489
+      ],
+      "first_episode_prefix": [
+        [
+          9,
+          1,
+          4
+        ]
+      ]
+    }
+  ]
+}
